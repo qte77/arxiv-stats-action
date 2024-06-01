@@ -21,15 +21,15 @@ jobs:
       # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
       #- name: download data from arxiv API
       - name: save data to csv
-        uses: gr2m/write-csv-file-action@v1.x
-        with:
-          # https://github.com/marketplace/actions/write-to-csv-file
-          path: data/dummy-data.csv
-          columns: id, version, time, time_str
-          id: $RANDOM$RANDOM$RANDOM
-          version: v$RANDOM
-          time: $(date -u +"%H:%M:%S %Z")
-          time_str: $( date +%s )
+        run: |
+          if [[ ! -f "$CSV_FILE" ]]; then
+            echo "id,version,time,time_str" >$CSV_FILE
+          fi
+          id=$RANDOM$RANDOM$RANDOM
+          version=$RANDOM
+          time=$(date -u +"%H:%M:%S %Z")
+          time_str=$( date +%s )
+          echo "$id,$version,$time,$time_str" >>$CSV_FILE
       - name: push updated csv file back to main branch
         run: |
           git config --local user.email "action@github.com"
