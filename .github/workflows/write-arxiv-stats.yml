@@ -1,9 +1,9 @@
 ---
 name: Update arxiv.org stats
 on:
-  schedule:
+  #schedule:
     # https://crontab.guru/every-day
-    - cron: "0 0 * * *"
+    #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
   CSV_PATH: data
@@ -20,7 +20,7 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
-          path: $CSV_PATH/$CSV_NAME
+          path: data/dummy-data.csv
           columns: id, version, time, time_str
           id: 1
           version: 1
@@ -30,8 +30,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data $CSV_PATH/$CSV_NAME
-          git commit -m "$CSV_PATH/$CSV_NAME updated"
+          git add data
+          git commit -m "Updated data/dummy-data.csv"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
