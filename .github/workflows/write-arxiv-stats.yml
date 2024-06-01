@@ -14,9 +14,9 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: $CSV_FILE
-          sparse-checkout-cone-mode: false
+      #  with:
+      #    sparse-checkout: $CSV_FILE
+      #    sparse-checkout-cone-mode: false
       # fetch statistics for arxiv.org
       # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
       #- name: download data from arxiv API
