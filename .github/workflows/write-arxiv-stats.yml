@@ -24,7 +24,7 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
-          path: $CSV_FILE
+          path: ${{ env.CSV_FILE }}
           columns: id, version, time, time_str
           id: $RANDOM$RANDOM$RANDOM
           version: v$RANDOM
@@ -34,7 +34,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ${{ env.CSV_FILE }}
+          git add $CSV_FILE
           git commit -m "Updated $CSV_FILE"
           git push origin main
 ...
