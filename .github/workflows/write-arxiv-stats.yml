@@ -6,8 +6,7 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
-  CSV_PATH: data
-  CSV_NAME: dummy-data.csv
+  CSV_FILE: data/dummy-data.csv
 jobs:
   updateArxivCsv:
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: data/dummy-data.csv
+          sparse-checkout: $CSV_FILE
           sparse-checkout-cone-mode: false
       # fetch statistics for arxiv.org
       # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
@@ -25,17 +24,17 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
-          path: data/dummy-data.csv
+          path: $CSV_FILE
           columns: id, version, time, time_str
-          id: 1
-          version: 1
-          time: "2024-06-01T19:32:58Z"
-          time_str: 1717270378
+          id: $RANDOM$RANDOM$RANDOM
+          version: v$RANDOM
+          time: $(date -u +"%H:%M:%S %Z")
+          time_str: $( date +%s )
       - name: push updated file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add data
-          git commit -m "Updated data/dummy-data.csv"
+          git commit -m "Updated $CSV_FILE"
           git push origin main
 ...
