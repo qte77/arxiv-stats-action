@@ -30,11 +30,11 @@ jobs:
           version: v$RANDOM
           time: $(date -u +"%H:%M:%S %Z")
           time_str: $( date +%s )
-      - name: push updated file back to main branch
+      - name: push updated csv file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $CSV_FILE
+          git add ${{ env.CSV_FILE }}
           git commit -m "Updated $CSV_FILE"
           git push origin main
 ...
