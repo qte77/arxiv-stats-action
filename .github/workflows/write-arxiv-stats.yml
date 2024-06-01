@@ -11,12 +11,17 @@ env:
 jobs:
   updateArxivCsv:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: checkout main branch
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: data/dummy-data.csv
+          sparse-checkout-cone-mode: false
       # fetch statistics for arxiv.org
       # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
-      - name: download data from arxiv API
+      #- name: download data from arxiv API
+      - name: save data to csv
         uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
@@ -33,6 +38,4 @@ jobs:
           git add data
           git commit -m "Updated data/dummy-data.csv"
           git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ...
