@@ -1,0 +1,38 @@
+---
+name: Update arxiv.org stats
+on:
+  schedule:
+    # https://crontab.guru/every-day
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+env:
+  CSV_PATH: data
+  CSV_NAME: dummy-data.csv
+jobs:
+  updateArxivCsv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout main branch
+      - uses: actions/checkout@v2
+      # fetch statistics for arxiv.org
+      # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
+      # - name: download data from arxiv API
+      - uses: gr2m/write-csv-file-action@v1.0.5
+        with:
+          # https://github.com/marketplace/actions/write-to-csv-file
+          path: ${CSV_PATH}/${CSV_NAME}
+          columns: id, version, time, time_str
+          id: 1
+          version: 1
+          time: "2024-06-01T19:32:58Z"
+          time_str: 1717270378
+      # push updated file back to main branch
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data #  ${CSV_PATH}/${CSV_NAME}
+          git commit -m "${CSV_PATH}/${CSV_NAME} updated"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+---
