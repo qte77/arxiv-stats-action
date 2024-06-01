@@ -24,7 +24,7 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
-          path: $( echo $CSV_FILE )
+          path: data/dummy-data.csv
           columns: id, version, time, time_str
           id: $RANDOM$RANDOM$RANDOM
           version: v$RANDOM
