@@ -17,7 +17,7 @@ jobs:
       # fetch statistics for arxiv.org
       # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
       - name: download data from arxiv API
-        uses: gr2m/write-csv-file-action@v1.0.5
+        uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
           path: ${CSV_PATH}/${CSV_NAME}
