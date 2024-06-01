@@ -20,7 +20,7 @@ jobs:
         uses: gr2m/write-csv-file-action@v1.x
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
-          path: "${CSV_PATH}/${CSV_NAME}"
+          path: $CSV_PATH/$CSV_NAME
           columns: id, version, time, time_str
           id: 1
           version: 1
@@ -30,8 +30,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data ${CSV_PATH}/${CSV_NAME}
-          git commit -m "${CSV_PATH}/${CSV_NAME} updated"
+          git add data $CSV_PATH/$CSV_NAME
+          git commit -m "$CSV_PATH/$CSV_NAME updated"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
