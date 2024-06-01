@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout main branch
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       # fetch statistics for arxiv.org
       # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
       - name: download data from arxiv API
-      - uses: gr2m/write-csv-file-action@v1.0.5
+        uses: gr2m/write-csv-file-action@v1.0.5
         with:
           # https://github.com/marketplace/actions/write-to-csv-file
           path: ${CSV_PATH}/${CSV_NAME}
@@ -27,7 +27,7 @@ jobs:
           time: "2024-06-01T19:32:58Z"
           time_str: 1717270378
       - name: push updated file back to main branch
-      - run: |
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add data #  ${CSV_PATH}/${CSV_NAME}
