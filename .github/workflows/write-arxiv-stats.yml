@@ -34,9 +34,9 @@ jobs:
         shell: python
         run: |
           from csv import writer
-          from random import random, choice
+          from random import random, choice, seed
           from datetime import datetime,timezone
-          random.seed(a=24, version=2)
+          seed(a=24, version=2)
           id = random.random() * 3
           version = ''.join(random.choice('0123456789ABCDEF') for i in range(8))
           time = datetime.now(timezone.utc)
