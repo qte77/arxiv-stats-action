@@ -19,16 +19,17 @@ jobs:
           ref: dev-arxiv-fetch-parse
       #    sparse-checkout: ${{ env.OUT_FILE }}
       #    sparse-checkout-cone-mode: false
-      #- uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         # https://github.com/actions/setup-python
-      #  with:
-      #    python-version: '3.10'
+        with:
+          python-version: '3.10'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install -m 'feedparser==6.0.8' -Uqq # -r requirements.txt
       - name: fetch and parse statistics for arxiv.org
         # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L38
         shell: python
         run: |
           # fetch and parse
-          pip3 install 'feedparser==6.0.8' -Uqq
           import feedparser
           import urllib.request
           # write to csv
