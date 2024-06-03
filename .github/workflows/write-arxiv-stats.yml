@@ -38,6 +38,16 @@ jobs:
           import csv
           #from random import random, choice, seed
           #from datetime import datetime, timezone
+          
+          def encode_feedparser_dict(d):
+            """ helper function to strip feedparser objects using a deep copy """
+            if isinstance(d, feedparser.FeedParserDict) or isinstance(d, dict):
+                return {k: encode_feedparser_dict(d[k]) for k in d.keys()}
+            elif isinstance(d, list):
+                return [encode_feedparser_dict(k) for k in d]
+            else:
+                return d
+                
           for k in range(${{ env.START_AT }}, ${{ env.START_AT }} + ${{ env.END_AT }}, 100):
             # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
             base_url = 'http://export.arxiv.org/api/query?'
