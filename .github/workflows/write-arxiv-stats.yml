@@ -9,7 +9,7 @@ env:
   CSV_FILE: data/dummy-data.csv
 jobs:
   updateArxivCsv:
-    runs-on: python
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
