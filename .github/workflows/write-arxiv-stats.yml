@@ -34,7 +34,7 @@ jobs:
       - name: save data to csv
         shell: python
         run: |
-          from csv import writer
+          import csv
           from random import random, choice, seed
           from datetime import datetime, timezone
           seed(a=24, version=2)
