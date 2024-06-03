@@ -28,7 +28,7 @@ jobs:
         shell: python
         run: |
           # fetch and parse
-          pip install 'feedparser==6.0.8' -Uqq
+          pip3 install 'feedparser==6.0.8' -Uqq
           import feedparser
           import urllib.request
           # write to csv
