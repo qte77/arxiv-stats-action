@@ -28,8 +28,9 @@ jobs:
         shell: python
         run: |
           # fetch and parse
-          import urllib.request
+          pip install 'feedparser==6.0.8' -Uqq
           import feedparser
+          import urllib.request
           # write to csv
           import csv
           #from random import random, choice, seed
