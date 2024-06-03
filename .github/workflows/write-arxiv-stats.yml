@@ -17,10 +17,10 @@ jobs:
       #  with:
       #    sparse-checkout: $CSV_FILE
       #    sparse-checkout-cone-mode: falsesteps:
-      - uses: actions/setup-python@v5
+      #- uses: actions/setup-python@v5
         # https://github.com/actions/setup-python
-        with:
-          python-version: '3.10'
+      #  with:
+      #    python-version: '3.10'
 #      - name: fetch statistics for arxiv.org
 #        # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
 #        shell: python
