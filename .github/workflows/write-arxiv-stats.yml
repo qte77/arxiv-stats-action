@@ -41,7 +41,7 @@ jobs:
           for k in range(${{ env.START_AT }}, ${{ env.START_AT }} + ${{ env.END_AT }}, 100):
             # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
             base_url = 'http://export.arxiv.org/api/query?'
-            add_url = 'search_query=%s&sortBy=lastUpdatedDate&start=%d&max_results=100' % (${{ env.TOPICS }}, k)
+            add_url = f"search_query=${{ env.TOPICS }}&sortBy=lastUpdatedDate&start={k}&max_results=100"
             #add_url = 'search_query=%s&sortBy=submittedDate&start=%d&max_results=100' % (${{ env.TOPICS }}, k)
             search_query = base_url + add_url
             with urllib.request.urlopen(search_query) as url:
