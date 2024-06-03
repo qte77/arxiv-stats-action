@@ -14,9 +14,10 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      #  with:
-      #    sparse-checkout: $CSV_FILE
-      #    sparse-checkout-cone-mode: falsesteps:
+        with:
+          ref: dev-arxiv-fetch-parse
+      #    sparse-checkout: ${{ env.OUT_FILE }}
+      #    sparse-checkout-cone-mode: false
       #- uses: actions/setup-python@v5
         # https://github.com/actions/setup-python
       #  with:
@@ -43,7 +44,7 @@ jobs:
           time_str = datetime.now(timezone.utc).timestamp() * 1000
           header = ["id", "version", "time", "time_str"]
           data = [id, version, time, time_str]
-          with open(CSV_FILE, 'w', newline='') as f: # encoding='UTF8'
+          with open("${{ env.CSV_FILE }}", 'w', newline='') as f: # encoding='UTF8'
             writer = csv.writer(f)
             writer.writerow(header)
             writer.writerow(data)
@@ -53,5 +54,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add $CSV_FILE
           git commit -m "Updated $CSV_FILE"
-          git push origin main
+          git push
 ...
