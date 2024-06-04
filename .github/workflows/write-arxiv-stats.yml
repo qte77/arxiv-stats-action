@@ -88,6 +88,7 @@ jobs:
                 out.append(j)
               # TODO retry n-times if connection failes
               # TODO sort descending and check if paper already id present    
+            header = ["id", "version", "time", "time_str"]
             with open("${{ env.CSV_FILE }}", 'a', newline='') as f: # encoding='UTF8'
               writer = csv.writer(f)
               writer.writerow(header)
