@@ -32,6 +32,7 @@ jobs:
         shell: python
         run: |
           # fetch and parse
+          import time
           import feedparser
           import urllib.request
           # write to csv
