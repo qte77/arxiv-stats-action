@@ -39,6 +39,20 @@ jobs:
           import csv
           #from random import random, choice, seed
           #from datetime import datetime, timezone
+
+          '''
+          arxiv API output
+          'id': 'http://arxiv.org/abs/2406.04221v1',
+          'guidislink': True,
+          'link': 'http://arxiv.org/abs/2406.04221v1',
+          'updated': '2024-06-06T16:20:07Z',
+          'updated_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
+          'published': '2024-06-06T16:20:07Z',
+          'published_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
+          'title': 'Matching Anything by Segmenting Anything',
+          'title_detail': {'type': 'text/plain', 'language': None, 'base': '', 'value': 'Matching Anything by Segmenting Anything'},
+          'summary': 'The robust association of the same'
+          '''
           
           def encode_feedparser_dict(d):
             """ helper function to strip feedparser objects using a deep copy """
@@ -79,15 +93,16 @@ jobs:
 
             for k, e in enumerate(parse.entries):
                 j = encode_feedparser_dict(e)
+
                 # extract / parse id information
-                idv, rawid, version = parse_arxiv_url(j['id'])
+                # idv, rawid, version = parse_arxiv_url(j['id'])
 
                 # DEBUG
-                print(f"{k=}::{type(j)=}")
-                print(f"{k=}::{j=}")
-                print(f"{idv=}, {rawid=}, {version=}")
+                  print(f"{k=}::{published=},{updated=},{rawid=},{version=}")
                 
                 '''
+                print(f"{k=}::{type(j)=}")
+                print(f"{k=}::{j=}")
                 j['_idv']= idv
                 j['_id'] = rawid
                 j['_version'] = version
@@ -98,19 +113,19 @@ jobs:
                 del j['summary_detail']
                 del j['title_detail']
                 '''
-                
+
                 out.append([
-                  idv, rawid, version, 
-                  time.mktime(j['updated_parsed']),
-                  time.strftime('%b %d %Y', j['updated_parsed']),
-                  k
+                  j['published'], j['updated'],
+                  rawid, version,
+                  #time.mktime(j['updated_parsed']),
+                  #time.strftime('%b %d %Y', j['updated_parsed']),
+                  f"\"{j['title']}\""
                 ])
+
               # TODO retry n-times if connection failes
               # TODO sort descending and check if paper already id present
-
-            # DEBUG
-            header = [debug_k_name, "id", "version", "time", "time_str"]
-            
+              
+            header = ["published", "updated", "id", "version", "title"] # "time", "time_str"
             with open("${{ env.CSV_FILE }}", 'a', newline='') as f: # encoding='UTF8'
               writer = csv.writer(f)
               writer.writerow(header)
