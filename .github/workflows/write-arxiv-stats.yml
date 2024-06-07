@@ -104,7 +104,7 @@ jobs:
                 title = str(j['title'])
                 for s in '\n\r\"\'':
                     title = title.translate({ ord(s): None })
-                # title = f"\"{title}\""
+                title = f"'{title}'"
                 out.append([
                   j['published'], j['updated'],
                   rawid, version, title                  
