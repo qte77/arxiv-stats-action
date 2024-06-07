@@ -99,9 +99,12 @@ jobs:
                 j = encode_feedparser_dict(e)
                 # extract / parse id information
                 idv, rawid, version = parse_arxiv_url(j['id'])
+                title = str(j['title'])
+                for nl in '\n\r':
+                    title = title.translate({ ord(nl): None })
                 out.append([
                   j['published'], j['updated'],
-                  rawid, version, str(j['title'])                  
+                  rawid, version, title                  
                 ])
             with open("${{ env.CSV_FILE }}", 'a', newline='') as f: # encoding='UTF8'
               writer = csv.writer(f)
