@@ -101,3 +101,153 @@ id,guidislink,link,updated,updated_parsed,published,published_parsed,title,summa
 id,guidislink,link,updated,updated_parsed,published,published_parsed,title,summary,authors,author_detail,author,arxiv_comment,links,arxiv_primary_category,tags,_idv,_id,_version,_time,_time_str
 id,guidislink,link,updated,updated_parsed,published,published_parsed,title,summary,authors,author_detail,author,arxiv_comment,links,arxiv_primary_category,tags,_idv,_id,_version,_time,_time_str
 id,guidislink,link,updated,updated_parsed,published,published_parsed,title,summary,authors,author_detail,author,links,arxiv_primary_category,tags,_idv,_id,_version,_time,_time_str
+published,updated,id,version,title
+2024-06-06T17:59:58Z,2024-06-06T17:59:58Z,2406.04345,1,"""Stereo-Depth Fusion through Virtual Pattern Projection"""
+2024-06-06T17:59:56Z,2024-06-06T17:59:56Z,2406.04342,1,"""Learning 1D Causal Visual Representation with De-focus Attention
+  Networks"""
+2024-06-06T17:59:56Z,2024-06-06T17:59:56Z,2406.04343,1,"""Flash3D: Feed-Forward Generalisable 3D Scene Reconstruction from a
+  Single Image"""
+2024-06-06T17:59:56Z,2024-06-06T17:59:56Z,2406.04344,1,"""Verbalized Machine Learning: Revisiting Machine Learning with Language
+  Models"""
+2024-06-06T17:59:52Z,2024-06-06T17:59:52Z,2406.04341,1,"""Interpreting the Second-Order Effects of Neurons in CLIP"""
+2024-06-06T17:59:50Z,2024-06-06T17:59:50Z,2406.04340,1,"""GLACE: Global Local Accelerated Coordinate Encoding"""
+2024-06-06T17:59:47Z,2024-06-06T17:59:47Z,2406.04338,1,"""Physics3D: Learning Physical Properties of 3D Gaussians via Video
+  Diffusion"""
+2024-06-06T17:59:47Z,2024-06-06T17:59:47Z,2406.04339,1,"""RoboMamba: Multimodal State Space Model for Efficient Robot Reasoning
+  and Manipulation"""
+2024-06-06T17:59:44Z,2024-06-06T17:59:44Z,2406.04337,1,"""Coherent Zero-Shot Visual Instruction Generation"""
+2024-06-06T17:59:41Z,2024-06-06T17:59:41Z,2406.04336,1,"""On the Expressive Power of Spectral Invariant Graph Neural Networks"""
+2024-03-01T18:12:46Z,2024-06-06T17:59:38Z,2403.00720,2,"""Subhomogeneous Deep Equilibrium Models"""
+2024-06-06T17:59:34Z,2024-06-06T17:59:34Z,2406.04334,1,"""DeepStack: Deeply Stacking Visual Tokens is Surprisingly Simple and
+  Effective for LMMs"""
+2024-06-06T17:59:23Z,2024-06-06T17:59:23Z,2406.04332,1,"""Coarse-To-Fine Tensor Trains for Compact Visual Representations"""
+2024-06-06T17:59:23Z,2024-06-06T17:59:23Z,2406.04333,1,"""BitsFusion: 1.99 bits Weight Quantization of Diffusion Model"""
+2024-06-06T17:59:10Z,2024-06-06T17:59:10Z,2406.04329,1,"""Simplified and Generalized Masked Diffusion for Discrete Data"""
+2024-06-06T17:59:10Z,2024-06-06T17:59:10Z,2406.04330,1,"""Parameter-Inverted Image Pyramid Networks"""
+2024-06-06T17:59:10Z,2024-06-06T17:59:10Z,2406.04331,1,"""PaCE: Parsimonious Concept Engineering for Large Language Models"""
+2024-06-06T17:59:09Z,2024-06-06T17:59:09Z,2406.04327,1,"""Causal Estimation of Memorisation Profiles"""
+2024-06-06T17:59:09Z,2024-06-06T17:59:09Z,2406.04328,1,"""The Brain's Bitter Lesson: Scaling Speech Decoding With Self-Supervised
+  Learning"""
+2024-06-06T17:58:54Z,2024-06-06T17:58:54Z,2406.04325,1,"""ShareGPT4Video: Improving Video Understanding and Generation with Better
+  Captions"""
+2023-10-19T17:55:06Z,2024-06-06T17:58:45Z,2310.12956,2,"""Eureka-Moments in Transformers: Multi-Step Tasks Reveal Softmax Induced
+  Optimization Problems"""
+2024-06-06T17:58:27Z,2024-06-06T17:58:27Z,2406.04324,1,"""SF-V: Single Forward Video Generation Model"""
+2024-06-06T17:58:15Z,2024-06-06T17:58:15Z,2406.04322,1,"""DIRECT-3D: Learning Direct Text-to-3D Generation on Massive Noisy 3D
+  Data"""
+2024-06-06T17:58:15Z,2024-06-06T17:58:15Z,2406.04323,1,"""ATraDiff: Accelerating Online Reinforcement Learning with Imaginary
+  Trajectories"""
+2024-06-06T17:58:11Z,2024-06-06T17:58:11Z,2406.04321,1,"""VidMuse: A Simple Video-to-Music Generation Framework with
+  Long-Short-Term Modeling"""
+2024-06-06T17:58:09Z,2024-06-06T17:58:09Z,2406.04320,1,"""Chimera: Effectively Modeling Multivariate Time Series with
+  2-Dimensional State Space Models"""
+2024-06-06T17:58:00Z,2024-06-06T17:58:00Z,2406.04318,1,"""Adaptive Sampling of k-Space in Magnetic Resonance for Rapid Pathology
+  Prediction"""
+2024-06-06T17:57:49Z,2024-06-06T17:57:49Z,2406.04317,1,"""Regularized KL-Divergence for Well-Defined Function-Space Variational
+  Inference in Bayesian neural networks"""
+2024-06-06T17:57:20Z,2024-06-06T17:57:20Z,2406.04316,1,"""Omni6DPose: A Benchmark and Model for Universal 6D Object Pose
+  Estimation and Tracking"""
+2024-06-06T17:57:09Z,2024-06-06T17:57:09Z,2406.04314,1,"""Step-aware Preference Optimization: Aligning Preference with Denoising
+  Performance at Each Step"""
+2024-06-06T17:57:04Z,2024-06-06T17:57:04Z,2406.04313,1,"""Improving Alignment and Robustness with Short Circuiting"""
+2024-06-06T17:56:40Z,2024-06-06T17:56:40Z,2406.04312,1,"""ReNO: Enhancing One-step Text-to-Image Models through Reward-based Noise
+  Optimization"""
+2024-06-06T17:55:34Z,2024-06-06T17:55:34Z,2406.04309,1,"""ReFiNe: Recursive Field Networks for Cross-modal Multi-scene
+  Representation"""
+2024-06-06T17:55:02Z,2024-06-06T17:55:02Z,2406.04308,1,"""Approximation-Aware Bayesian Optimization"""
+2024-06-06T17:53:34Z,2024-06-06T17:53:34Z,2406.04306,1,"""Semantically Diverse Language Generation for Uncertainty Estimation in
+  Language Models"""
+2024-05-27T17:49:15Z,2024-06-06T17:52:03Z,2405.17398,2,"""Vista: A Generalizable Driving World Model with High Fidelity and
+  Versatile Controllability"""
+2024-05-03T21:48:09Z,2024-06-06T17:51:52Z,2405.02492,2,"""Investigating the Generalizability of Assistive Robots Models over
+  Various Tasks"""
+2022-08-23T07:50:52Z,2024-06-06T17:50:16Z,2208.10790,5,"""Event-Triggered Time-Varying Bayesian Optimization"""
+2024-06-06T17:49:21Z,2024-06-06T17:49:21Z,2406.04303,1,"""Vision-LSTM: xLSTM as Generic Vision Backbone"""
+2024-01-30T18:56:22Z,2024-06-06T17:48:28Z,2401.17264,2,"""Proactive Detection of Voice Cloning with Localized Watermarking"""
+2024-06-06T17:48:24Z,2024-06-06T17:48:24Z,2406.04302,1,"""Representational Alignment Supports Effective Machine Teaching"""
+2024-06-06T17:47:48Z,2024-06-06T17:47:48Z,2406.04301,1,"""Neural Surface Reconstruction from Sparse Views Using Epipolar Geometry"""
+2024-06-06T17:47:41Z,2024-06-06T17:47:41Z,2406.04300,1,"""Text-to-Drive: Diverse Driving Behavior Synthesis via Large Language
+  Models"""
+2024-02-20T13:20:39Z,2024-06-06T17:46:48Z,2402.12991,2,"""TRAP: Targeted Random Adversarial Prompt Honeypot for Black-Box
+  Identification"""
+2024-01-12T16:52:41Z,2024-06-06T17:45:39Z,2401.06688,2,"""Don't Rank, Combine! Combining Machine Translation Hypotheses Using
+  Quality Estimation"""
+2024-06-06T17:45:00Z,2024-06-06T17:45:00Z,2406.04299,1,"""NoisyGL: A Comprehensive Benchmark for Graph Neural Networks under Label
+  Noise"""
+2024-06-06T17:42:37Z,2024-06-06T17:42:37Z,2406.04298,1,"""Measuring and Addressing Indexical Bias in Information Retrieval"""
+2024-03-12T17:58:04Z,2024-06-06T17:41:21Z,2403.07974,2,"""LiveCodeBench: Holistic and Contamination Free Evaluation of Large
+  Language Models for Code"""
+2024-02-12T08:16:10Z,2024-06-06T17:39:53Z,2402.09470,2,"""Rolling Diffusion Models"""
+2024-06-03T14:13:13Z,2024-06-06T17:39:50Z,2406.01349,3,"""Unleashing Generalization of End-to-End Autonomous Driving with
+  Controllable Long Video Generation"""
+2024-06-06T17:39:09Z,2024-06-06T17:39:09Z,2406.04295,1,"""Everything to the Synthetic: Diffusion-driven Test-time Adaptation via
+  Synthetic-Domain Alignment"""
+2024-06-06T17:37:47Z,2024-06-06T17:37:47Z,2406.04292,1,"""VISTA: Visualized Text Embedding For Universal Multi-Modal Retrieval"""
+2024-06-06T17:37:39Z,2024-06-06T17:37:39Z,2406.04291,1,"""Stratified Prediction-Powered Inference for Hybrid Language Model
+  Evaluation"""
+2024-06-06T17:34:24Z,2024-06-06T17:34:24Z,2406.04289,1,"""What Languages are Easy to Language-Model? A Perspective from Learning
+  Probabilistic Regular Languages"""
+2024-06-06T17:33:23Z,2024-06-06T17:33:23Z,2406.04287,1,"""SpectralZoom: Efficient Segmentation with an Adaptive Hyperspectral
+  Camera"""
+2024-01-29T18:45:30Z,2024-06-06T17:31:07Z,2401.16467,2,"""ReGAL: Refactoring Programs to Discover Generalizable Abstractions"""
+2024-06-06T17:29:57Z,2024-06-06T17:29:57Z,2406.04286,1,"""ABEX: Data Augmentation for Low-Resource NLU via Expanding Abstract
+  Descriptions"""
+2024-06-06T17:28:56Z,2024-06-06T17:28:56Z,2406.04284,1,"""What is Dataset Distillation Learning?"""
+2024-06-06T17:26:40Z,2024-06-06T17:26:40Z,2406.04280,1,"""xMIL: Insightful Explanations for Multiple Instance Learning in
+  Histopathology"""
+2024-06-06T17:26:00Z,2024-06-06T17:26:00Z,2406.04278,1,"""Characterizing Similarities and Divergences in Conversational Tones in
+  Humans and LLMs by Sampling with People"""
+2024-06-06T17:25:33Z,2024-06-06T17:25:33Z,2406.04277,1,"""VideoTetris: Towards Compositional Text-to-Video Generation"""
+2024-06-06T17:25:07Z,2024-06-06T17:25:07Z,2406.04276,1,"""Generative AI-in-the-loop: Integrating LLMs and GPTs into the Next
+  Generation Networks"""
+2024-06-06T17:23:49Z,2024-06-06T17:23:49Z,2406.04274,1,"""Self-Play with Adversarial Critic: Provable and Scalable Offline
+  Alignment for Language Models"""
+2024-06-06T17:23:05Z,2024-06-06T17:23:05Z,2406.04273,1,"""ELFS: Enhancing Label-Free Coreset Selection via Clustering-based
+  Pseudo-Labeling"""
+2024-06-06T17:22:08Z,2024-06-06T17:22:08Z,2406.04271,1,"""Buffer of Thoughts: Thought-Augmented Reasoning with Large Language
+  Models"""
+2023-09-18T14:53:08Z,2024-06-06T17:21:37Z,2309.09836,2,"""RECAP: Retrieval-Augmented Audio Captioning"""
+2024-02-17T17:52:24Z,2024-06-06T17:20:21Z,2402.11349,2,"""Language Models Don't Learn the Physical Manifestation of Language"""
+2024-02-08T20:07:47Z,2024-06-06T17:20:07Z,2402.06031,2,"""An operator learning perspective on parameter-to-observable maps"""
+2024-06-06T17:15:02Z,2024-06-06T17:15:02Z,2406.04268,1,"""Open-Endedness is Essential for Artificial Superhuman Intelligence"""
+2024-06-06T17:14:44Z,2024-06-06T17:14:44Z,2406.04267,1,"""Transformers need glasses! Information over-squashing in language tasks"""
+2024-02-01T01:06:32Z,2024-06-06T17:14:03Z,2402.00258,2,"""Multi-group Learning for Hierarchical Groups"""
+2024-06-06T17:09:32Z,2024-06-06T17:09:32Z,2406.04264,1,"""MLVU: A Comprehensive Benchmark for Multi-Task Long Video Understanding"""
+2024-06-06T17:05:09Z,2024-06-06T17:05:09Z,2406.04261,1,"""Simulating, Fast and Slow: Learning Policies for Black-Box Optimization"""
+2024-02-20T01:04:21Z,2024-06-06T17:04:41Z,2402.12621,2,"""Reflect-RL: Two-Player Online RL Fine-Tuning for LMs"""
+2024-06-06T17:03:51Z,2024-06-06T17:03:51Z,2406.04257,1,"""Data Measurements for Decentralized Data Markets"""
+2024-06-06T17:00:10Z,2024-06-06T17:00:10Z,2406.04254,1,"""GeoGen: Geometry-Aware Generative Modeling via Signed Distance Functions"""
+2024-06-06T16:58:00Z,2024-06-06T16:58:00Z,2406.04253,1,"""A Survey on 3D Human Avatar Modeling -- From Reconstruction to
+  Generation"""
+2024-06-06T16:55:07Z,2024-06-06T16:55:07Z,2406.04251,1,"""Localized Gaussian Point Management"""
+2024-06-06T16:54:20Z,2024-06-06T16:54:20Z,2406.04250,1,"""Online learning of quantum processes"""
+2024-06-06T16:52:42Z,2024-06-06T16:52:42Z,2406.04249,1,"""Conv-INR: Convolutional Implicit Neural Representation for Multimodal
+  Visual Signals"""
+2023-12-22T18:55:25Z,2024-06-06T16:48:20Z,2312.14922,3,"""Learning from higher-order statistics, efficiently: hypothesis tests,
+  random features, and neural networks"""
+2024-06-06T16:44:08Z,2024-06-06T16:44:08Z,2406.04245,1,"""Online learning of a panoply of quantum objects"""
+2024-06-06T16:41:39Z,2024-06-06T16:41:39Z,2406.04244,1,"""Benchmark Data Contamination of Large Language Models: A Survey"""
+2024-02-21T20:30:45Z,2024-06-06T16:41:21Z,2402.14116,2,"""FanOutQA: A Multi-Hop, Multi-Document Question Answering Benchmark for
+  Large Language Models"""
+2024-06-06T16:39:00Z,2024-06-06T16:39:00Z,2406.04240,1,"""Hypernetworks for Personalizing ASR to Atypical Speech"""
+2024-06-06T16:38:53Z,2024-06-06T16:38:53Z,2406.04239,1,"""Solving Inverse Problems in Protein Space Using Diffusion-Based Priors"""
+2024-06-03T14:56:09Z,2024-06-06T16:38:34Z,2406.01392,2,"""Sparsity-Accelerated Training for Large Language Models"""
+2024-03-26T13:02:43Z,2024-06-06T16:35:51Z,2403.17673,2,"""How Private are DP-SGD Implementations?"""
+2024-06-06T16:35:36Z,2024-06-06T16:35:36Z,2406.04236,1,"""Understanding Information Storage and Transfer in Multi-modal Large
+  Language Models"""
+2024-06-06T16:35:27Z,2024-06-06T16:35:27Z,2406.04235,1,"""Toward Artificial Open-Ended Evolution within Lenia using
+  Quality-Diversity"""
+2023-08-07T05:40:58Z,2024-06-06T16:35:20Z,2308.03312,8,"""Exploiting Code Symmetries for Learning Program Semantics"""
+2024-06-06T16:31:47Z,2024-06-06T16:31:47Z,2406.04233,1,"""FairytaleQA Translated: Enabling Educational Question and Answer
+  Generation in Less-Resourced Languages"""
+2024-06-06T16:31:22Z,2024-06-06T16:31:22Z,2406.04231,1,"""Quantifying Misalignment Between Agents"""
+2024-06-06T16:30:41Z,2024-06-06T16:30:41Z,2406.04230,1,"""M3LEO: A Multi-Modal, Multi-Label Earth Observation Dataset Integrating
+  Interferometric SAR and RGB Data"""
+2024-06-06T16:29:25Z,2024-06-06T16:29:25Z,2406.04229,1,"""The CLRS-Text Algorithmic Reasoning Language Benchmark"""
+2024-06-06T16:28:04Z,2024-06-06T16:28:04Z,2406.04227,1,"""R-CONV: An Analytical Approach for Efficient Data Reconstruction via
+  Convolutional Gradients"""
+2023-08-17T08:00:20Z,2024-06-06T16:21:09Z,2308.08841,3,"""Machine Learning-Assisted Discovery of Flow Reactor Designs"""
+2024-05-01T22:33:45Z,2024-06-06T16:21:08Z,2405.00892,2,"""Wake Vision: A Large-scale, Diverse Dataset and Benchmark Suite for
+  TinyML Person Detection"""
+2024-06-06T16:20:07Z,2024-06-06T16:20:07Z,2406.04221,1,"""Matching Anything by Segmenting Anything"""
+2024-06-06T16:18:30Z,2024-06-06T16:18:30Z,2406.04220,1,"""BEADs: Bias Evaluation Across Domains"""
