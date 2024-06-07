@@ -1,4 +1,10 @@
 ---
+# TODO split csv by week
+# TODO create log
+# TODO retry n-times if connection failes
+# TODO sort descending and check if paper already id present
+# TODO export functions to utils.py
+# TODO base_url and add_url to env, add env.max_results
 name: Update arxiv.org stats
 on:
   #schedule:
@@ -36,6 +42,7 @@ jobs:
           import feedparser
           import urllib.request
           # write to csv
+          from os.path import exists
           import csv
           #from random import random, choice, seed
           #from datetime import datetime, timezone
@@ -71,9 +78,10 @@ jobs:
             ix = url.rfind('/')
             assert ix >= 0, 'bad url: ' + url
             idv = url[ix+1:] # extract just the id (and the version)
-            parts = idv.split('v')
-            assert len(parts) == 2, 'error splitting id and version in idv string: ' + idv
-            return idv, parts[0], int(parts[1])
+            rawid, version = idv.split('v')
+            assert rawid not None and version not None, \
+              f"error splitting id and version in idv string: {idv}"
+            return idv, rawid, int(version)
                 
           for k in range(${{ env.START_AT }}, ${{ env.START_AT }} + ${{ env.END_AT }}, 100):
             # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
@@ -86,49 +94,20 @@ jobs:
             if url.status != 200:
                 print(f"arxiv did not return status 200 response")
             out = []
-           
             parse = feedparser.parse(response)
-
-            print(f"{type(parse.entries)=}")
-
             for k, e in enumerate(parse.entries):
                 j = encode_feedparser_dict(e)
-
                 # extract / parse id information
                 idv, rawid, version = parse_arxiv_url(j['id'])
-
-                # DEBUG
-                print(f"{k=}::{j['published']=},{j['updated']=},{rawid=},{version=}")
-                
-                '''
-                print(f"{k=}::{type(j)=}")
-                print(f"{k=}::{j=}")
-                j['_idv']= idv
-                j['_id'] = rawid
-                j['_version'] = version
-                j['_time'] = time.mktime(j['updated_parsed'])
-                j['_time_str'] = time.strftime('%b %d %Y', j['updated_parsed'])
-                
-                # delete apparently spurious and redundant information
-                del j['summary_detail']
-                del j['title_detail']
-                '''
-
                 out.append([
                   j['published'], j['updated'],
-                  rawid, version,
-                  #time.mktime(j['updated_parsed']),
-                  #time.strftime('%b %d %Y', j['updated_parsed']),
-                  f"\"{j['title']}\""
+                  rawid, version, str(j['title'])                  
                 ])
-
-              # TODO retry n-times if connection failes
-              # TODO sort descending and check if paper already id present
-              
-            header = ["published", "updated", "id", "version", "title"] # "time", "time_str"
             with open("${{ env.CSV_FILE }}", 'a', newline='') as f: # encoding='UTF8'
               writer = csv.writer(f)
-              writer.writerow(header)
+              if exists(path_to_file):
+                header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
+                writer.writerow(header)
               for o in out:
                 writer.writerow(o)
       - name: push updated csv file back to main branch
