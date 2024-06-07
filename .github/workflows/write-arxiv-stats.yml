@@ -95,10 +95,10 @@ jobs:
                 j = encode_feedparser_dict(e)
 
                 # extract / parse id information
-                # idv, rawid, version = parse_arxiv_url(j['id'])
+                idv, rawid, version = parse_arxiv_url(j['id'])
 
                 # DEBUG
-                print(f"{k=}::{published=},{updated=},{rawid=},{version=}")
+                print(f"{k=}::{j['published']=},{j['updated']=},{rawid=},{version=}")
                 
                 '''
                 print(f"{k=}::{type(j)=}")
