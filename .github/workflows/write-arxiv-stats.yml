@@ -98,7 +98,7 @@ jobs:
                 # idv, rawid, version = parse_arxiv_url(j['id'])
 
                 # DEBUG
-                  print(f"{k=}::{published=},{updated=},{rawid=},{version=}")
+                print(f"{k=}::{published=},{updated=},{rawid=},{version=}")
                 
                 '''
                 print(f"{k=}::{type(j)=}")
