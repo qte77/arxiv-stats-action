@@ -72,10 +72,11 @@ jobs:
             if url.status != 200:
                 print(f"arxiv did not return status 200 response")
             out = []
-
-            print(f"{type(e)=}")
-            
+           
             parse = feedparser.parse(response)
+
+            print(f"{type(parse.entries)=}")
+
             for k, e in enumerate(parse.entries):
                 j = encode_feedparser_dict(e)
                 # extract / parse id information
