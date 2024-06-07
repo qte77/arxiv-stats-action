@@ -42,7 +42,8 @@ jobs:
           import feedparser
           import urllib.request
           # write to csv
-          from os.path import exists
+          from os import makedirs
+          from os.path import exists, dirname
           import csv
           #from random import random, choice, seed
           #from datetime import datetime, timezone
@@ -108,8 +109,10 @@ jobs:
                   j['published'], j['updated'],
                   rawid, version, title                  
                 ])
+            # folder needs to exist before open()
             # https://docs.python.org/3/library/functions.html#open
-            with open("${{ env.CSV_FILE }}", '+', newline='') as f: # encoding='UTF8'
+            makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
+            with open("${{ env.CSV_FILE }}", 'a+', newline='', encoding='UTF8') as f:
               writer = csv.writer(f)
               if exists("${{ env.CSV_FILE }}"):
                 header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
