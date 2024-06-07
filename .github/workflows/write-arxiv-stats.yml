@@ -105,7 +105,7 @@ jobs:
                 ])
             with open("${{ env.CSV_FILE }}", 'a', newline='') as f: # encoding='UTF8'
               writer = csv.writer(f)
-              if exists(${{ env.CSV_FILE }}):
+              if exists("${{ env.CSV_FILE }}"):
                 header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
                 writer.writerow(header)
               for o in out:
