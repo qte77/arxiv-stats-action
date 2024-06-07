@@ -79,7 +79,7 @@ jobs:
             assert ix >= 0, 'bad url: ' + url
             idv = url[ix+1:] # extract just the id (and the version)
             rawid, version = idv.split('v')
-            assert rawid not None and version not None, \
+            assert rawid is not None and version is not None, \
               f"error splitting id and version in idv string: {idv}"
             return idv, rawid, int(version)
                 
