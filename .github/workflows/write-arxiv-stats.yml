@@ -73,14 +73,14 @@ jobs:
                 print(f"arxiv did not return status 200 response")
             out = []
 
-            # debug
-            debug_k_name = "k_debug"
+            print(f"type(e)="}
             
             parse = feedparser.parse(response)
             for k, e in enumerate(parse.entries):
                 j = encode_feedparser_dict(e)
                 # extract / parse id information
 
+                print(f"{k=}::{type(j)=}")
                 print(f"{k=}::{j=}")
 
                 idv, rawid, version = parse_arxiv_url(j['id'])
