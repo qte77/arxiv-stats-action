@@ -99,9 +99,11 @@ jobs:
                 j = encode_feedparser_dict(e)
                 # extract / parse id information
                 idv, rawid, version = parse_arxiv_url(j['id'])
+                # TODO simplify title prep
                 title = str(j['title'])
-                for nl in '\n\r':
-                    title = title.translate({ ord(nl): None })
+                for s in '\n\r\"\'':
+                    title = title.translate({ ord(s): None })
+                title = f"\"{title}\""
                 out.append([
                   j['published'], j['updated'],
                   rawid, version, title                  
