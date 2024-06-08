@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: dev-arxiv-fetch-parse
+          ref: main
       #    sparse-checkout: ${{ env.OUT_FILE }}
       #    sparse-checkout-cone-mode: false
       #- uses: actions/setup-python@v5
