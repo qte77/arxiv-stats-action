@@ -90,14 +90,15 @@ jobs:
           # https://info.arxiv.org/help/api/user-manual.html
           # sortOrder=descending
           add_url = "${{ env.ADD_URL }}".replace("#TOPICS#", "${{ env.TOPICS }}")
-          add_url = add_url.replace("#MAXRES#", ${{ env.MAX_RESULTS_PER_QUERY }})
+          add_url = add_url.replace("#MAXRES#", "${{ env.MAX_RESULTS_PER_QUERY }}")
+          search_query = "${{ env.BASE_URL }}" + add_url
           for k in range(
             ${{ env.START_RESULT }},
             ${{ env.START_RESULT }} + ${{ env.END_RESULT }},
             ${{ env.MAX_RESULTS_PER_QUERY }}
           ):
-            search_query = "${{ env.BASE_URL }}" + add_url.replace("#STARTRES#", k)
-            with urllib.request.urlopen(search_query) as url:
+            search_query_k = search_query.replace("#STARTRES#", str(k))
+            with urllib.request.urlopen(search_query_k) as url:
                 response = url.read()
             if url.status != 200:
                 print(f"arxiv did not return status 200 response")
