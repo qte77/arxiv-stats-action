@@ -4,12 +4,12 @@ from os import getenv, makedirs
 from os.path import exists, dirname
 
 CSV_FILE = getenv("CSV_FILE")
-TOPICS = getenv("TOPICS")
-ADD_URL = getenv("ADD_URL")
-BASE_URL = getenv("BASE_URL")
-START_RESULT = int(getenv("START_RESULT"))
-END_RESULT = int(getenv("END_RESULT"))
-MAX_RESULTS_PER_QUERY = int(getenv("MAX_RESULTS_PER_QUERY"))
+TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
+BASE_URL = getenv("BASE_URL", 'http://export.arxiv.org/api/query?')
+ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
+START_RESULT = getenv("START_RESULT", 0)
+END_RESULT = getenv("START_RESULT", 199)
+MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 100)
 
 TOPICS_REPL_STR = "#TOPICS#"
 MAXRES_REPL_STR = "#MAXRES#"
