@@ -6,7 +6,13 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
-  CSV_FILE: data/dummy-data.csv
+  CSV_FILE: 'data/dummy-data.csv'
+  TOPICS:  'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO'
+  BASE_URL: 'http://export.arxiv.org/api/query?'
+  ADD_URL: 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate'
+  START_RESULT: 0
+  END_RESULT: 199
+  MAX_RESULTS_PER_QUERY: 100
 jobs:
   updateArxivCsv:
     runs-on: ubuntu-latest
@@ -14,27 +20,111 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      #  with:
-      #    sparse-checkout: $CSV_FILE
+        with:
+          ref: dev-arxiv-fetch-parse
+      #    sparse-checkout: ${{ env.OUT_FILE }}
       #    sparse-checkout-cone-mode: false
-      # fetch statistics for arxiv.org
-      # https://github.com/karpathy/arxiv-sanity-lite/blob/master/aslite/arxiv.py#L38
-      #- name: download data from arxiv API
-      - name: save data to csv
+      #- uses: actions/setup-python@v5
+        # https://github.com/actions/setup-python
+      #  with:
+      #    python-version: '3.10'
+      #    cache: 'pip' # caching pip dependencies
+      - run: pip install 'feedparser==6.0.8' -Uqq # -r requirements.txt
+      - name: fetch and parse statistics for arxiv.org
+        # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L38
+        shell: python
         run: |
-          if [[ ! -f "$CSV_FILE" ]]; then
-            echo "id,version,time,time_str" >$CSV_FILE
-          fi
-          id=$RANDOM$RANDOM$RANDOM
-          version=$RANDOM
-          time=$(date -u +"%H:%M:%S %Z")
-          time_str=$( date +%s )
-          echo "$id,$version,$time,$time_str" >>$CSV_FILE
+          # fetch and parse
+          import time
+          import feedparser
+          import urllib.request
+          # write to csv
+          from os import makedirs
+          from os.path import exists, dirname
+          import csv
+
+          '''
+          arxiv API output
+          'id': 'http://arxiv.org/abs/2406.04221v1',
+          'guidislink': True,
+          'link': 'http://arxiv.org/abs/2406.04221v1',
+          'updated': '2024-06-06T16:20:07Z',
+          'updated_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
+          'published': '2024-06-06T16:20:07Z',
+          'published_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
+          'title': 'Matching Anything by Segmenting Anything',
+          'title_detail': {'type': 'text/plain', 'language': None, 'base': '', 'value': 'Matching Anything by Segmenting Anything'},
+          'summary': 'The robust association of the same'
+          '''
+          
+          def encode_feedparser_dict(d):
+            """ helper function to strip feedparser objects using a deep copy """
+            if isinstance(d, feedparser.FeedParserDict) or isinstance(d, dict):
+                return {k: encode_feedparser_dict(d[k]) for k in d.keys()}
+            elif isinstance(d, list):
+                return [encode_feedparser_dict(k) for k in d]
+            else:
+                return d
+
+          def parse_arxiv_url(url):
+            """
+            examples is http://arxiv.org/abs/1512.08756v2
+            we want to extract the raw id (1512.08756) and the version (2)
+            """
+            ix = url.rfind('/')
+            assert ix >= 0, 'bad url: ' + url
+            idv = url[ix+1:] # extract just the id (and the version)
+            rawid, version = idv.split('v')
+            assert rawid is not None and version is not None, \
+              f"error splitting id and version in idv string: {idv}"
+            return idv, rawid, int(version)
+                
+          # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
+          # https://info.arxiv.org/help/api/user-manual.html
+          # sortOrder=descending
+          add_url = "${{ env.ADD_URL }}".replace("#TOPICS#", "${{ env.TOPICS }}")
+          add_url = add_url.replace("#MAXRES#", "${{ env.MAX_RESULTS_PER_QUERY }}")
+          search_query = "${{ env.BASE_URL }}" + add_url
+          for k in range(
+            ${{ env.START_RESULT }},
+            ${{ env.START_RESULT }} + ${{ env.END_RESULT }},
+            ${{ env.MAX_RESULTS_PER_QUERY }}
+          ):
+            search_query_k = search_query.replace("#STARTRES#", str(k))
+            with urllib.request.urlopen(search_query_k) as url:
+                response = url.read()
+            if url.status != 200:
+                print(f"arxiv did not return status 200 response")
+            out = []
+            parse = feedparser.parse(response)
+            for e in parse.entries:
+                j = encode_feedparser_dict(e)
+                # extract / parse id information
+                idv, rawid, version = parse_arxiv_url(j['id'])
+                # TODO simplify title prep
+                title = str(j['title'])
+                for s in '\n\r\"\'':
+                    title = title.translate({ ord(s): None })
+                title = f"'{title}'"
+                out.append([
+                  j['published'], j['updated'],
+                  rawid, version, title                  
+                ])
+            # folder needs to exist before open()
+            # https://docs.python.org/3/library/functions.html#open
+            makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
+            with open("${{ env.CSV_FILE }}", 'a+', newline='', encoding='UTF8') as f:
+              writer = csv.writer(f)
+              if not exists("${{ env.CSV_FILE }}"):
+                header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
+                writer.writerow(header)
+              for o in out:
+                writer.writerow(o)
       - name: push updated csv file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add $CSV_FILE
           git commit -m "Updated $CSV_FILE"
-          git push origin main
+          git push
 ...
