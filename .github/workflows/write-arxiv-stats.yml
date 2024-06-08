@@ -36,7 +36,7 @@ jobs:
         shell: python
         run: |
           from os.path import realpath, dirname
-          os.path.dirname(os.path.realpath(__file__))
+          print(dirname(realpath(__file__)))
           
           from . import utils
           if not exists("${{ env.CSV_FILE }}"):
