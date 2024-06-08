@@ -1,11 +1,4 @@
 ---
-# TODO split csv by week
-# TODO create log
-# TODO retry n-times if connection failes
-# TODO sort descending and check if paper id already present
-# TODO export functions to utils.py
-# TODO only insert papers published in time frame, not updated
-# TODO env var input validation
 name: Update arxiv.org stats
 on:
   #schedule:
