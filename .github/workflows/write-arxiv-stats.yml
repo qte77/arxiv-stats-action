@@ -88,7 +88,7 @@ jobs:
           # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
           # https://info.arxiv.org/help/api/user-manual.html
           # sortOrder=descending
-          add_url = $ADD_URL.replace("#TOPICS", $TOPICS).replace("#MAXRES#", $MAX_RESULTS_PER_QUERY)
+          add_url = $ADD_URL.replace("#TOPICS#", ${{ env.TOPICS }}).replace("#MAXRES#", ${{ env.MAX_RESULTS_PER_QUERY }})
           for k in range(
             ${{ env.START_RESULT }},
             ${{ env.START_RESULT }} + ${{ env.END_RESULT }},
