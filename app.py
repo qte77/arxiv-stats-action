@@ -37,21 +37,7 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
       response = url.read()
   if url.status != 200:
       print(f"arxiv did not return status 200 response")
-  out = []
-  parse = feedparser.parse(response)
-  for e in parse.entries:
-      j = encode_feedparser_dict(e)
-      # extract / parse id information
-      idv, rawid, version = parse_arxiv_url(j['id'])
-      # TODO simplify title prep
-      title = str(j['title'])
-      for s in '\n\r\"\'':
-          title = title.translate({ ord(s): None })
-      title = f"'{title}'"
-      out.append([
-        j['published'], j['updated'],
-        rawid, version, title                  
-      ])
+  out = get_parsed_output(response)
   with open(CSV_FILE, 'a+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
     for o in out:
