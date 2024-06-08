@@ -29,56 +29,19 @@ jobs:
       #  with:
       #    python-version: '3.10'
       #    cache: 'pip' # caching pip dependencies
-      - run: pip install 'feedparser==6.0.8' -Uqq # -r requirements.txt
+      - run: pip -qqr requirements.txt
       - name: fetch and parse statistics for arxiv.org
         # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L38
         shell: python
         run: |
-          # fetch and parse
-          import time
-          import feedparser
-          import urllib.request
-          # write to csv
-          from os import makedirs
-          from os.path import exists, dirname
-          import csv
-
-          '''
-          arxiv API output
-          'id': 'http://arxiv.org/abs/2406.04221v1',
-          'guidislink': True,
-          'link': 'http://arxiv.org/abs/2406.04221v1',
-          'updated': '2024-06-06T16:20:07Z',
-          'updated_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
-          'published': '2024-06-06T16:20:07Z',
-          'published_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
-          'title': 'Matching Anything by Segmenting Anything',
-          'title_detail': {'type': 'text/plain', 'language': None, 'base': '', 'value': 'Matching Anything by Segmenting Anything'},
-          'summary': 'The robust association of the same'
-          '''
-          
-          def encode_feedparser_dict(d):
-            """ helper function to strip feedparser objects using a deep copy """
-            if isinstance(d, feedparser.FeedParserDict) or isinstance(d, dict):
-                return {k: encode_feedparser_dict(d[k]) for k in d.keys()}
-            elif isinstance(d, list):
-                return [encode_feedparser_dict(k) for k in d]
-            else:
-                return d
-
-          def parse_arxiv_url(url):
-            """
-            examples is http://arxiv.org/abs/1512.08756v2
-            we want to extract the raw id (1512.08756) and the version (2)
-            """
-            ix = url.rfind('/')
-            assert ix >= 0, 'bad url: ' + url
-            idv = url[ix+1:] # extract just the id (and the version)
-            rawid, version = idv.split('v')
-            assert rawid is not None and version is not None, \
-              f"error splitting id and version in idv string: {idv}"
-            return idv, rawid, int(version)
-                
+          import ./utils.py
+          if not exists("${{ env.CSV_FILE }}"):
+            # folder needs to exist before open()
+            makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
+            header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
+            print(f"{header}")
+            with open("${{ env.CSV_FILE }}", 'w+', newline='', encoding='UTF8') as f:
+              csv.writer(f).writerow(header)
           # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
           # https://info.arxiv.org/help/api/user-manual.html
           # sortOrder=descending
@@ -110,15 +73,8 @@ jobs:
                   j['published'], j['updated'],
                   rawid, version, title                  
                 ])
-            if not exists("${{ env.CSV_FILE }}"):
-              header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
-              print(f"{header}")
-              use_header = True
-            # folder needs to exist before open()
-            makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
             with open("${{ env.CSV_FILE }}", 'a+', newline='', encoding='UTF8') as f:
               writer = csv.writer(f)
-              if use_header: writer.writerow(header)
               for o in out:
                 writer.writerow(o)
       - name: push updated csv file back to main branch
