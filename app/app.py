@@ -1,9 +1,9 @@
-from utils import get_api_response, get_parsed_output
 import csv
 from os import getenv, makedirs
 from os.path import exists, dirname
+from utils import get_api_response, get_parsed_output
 
-CSV_FILE = getenv("CSV_FILE")
+OUT_FILE = getenv("OUT_FILE")
 TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
 BASE_URL = getenv("BASE_URL", 'http://export.arxiv.org/api/query?')
 ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
@@ -23,10 +23,10 @@ HEADER = ["published", "updated", "id", "version", "title"]
 add_url_dyn = ADD_URL.replace(TOPICS_REPL_STR, TOPICS).replace(MAXRES_REPL_STR, str(MAX_RESULTS_PER_QUERY))
 search_query = BASE_URL + add_url_dyn
 
-if not exists(CSV_FILE):
+if not exists(OUT_FILE):
   # folder needs to exist before open() context
-  makedirs(dirname(CSV_FILE), exist_ok=True)
-  with open(CSV_FILE, 'w+', newline='', encoding='UTF8') as f:
+  makedirs(dirname(OUT_FILE), exist_ok=True)
+  with open(OUT_FILE, 'w+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
     writer.writerow(HEADER)
 
@@ -34,7 +34,7 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   search_query_k = search_query.replace(STARTRES_REPL_STR, str(k))
   response = get_api_response(search_query_k)
   out = get_parsed_output(response)
-  with open(CSV_FILE, 'a+', newline='', encoding='UTF8') as f:
+  with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
     for o in out:
       writer.writerow(o)
