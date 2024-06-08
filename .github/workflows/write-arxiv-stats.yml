@@ -66,8 +66,9 @@ jobs:
                   j['published'], j['updated'],
                   rawid, version, title                  
                 ])
-            if not exists("${{ env.CSV_FILE }}"):
+            if not isfile("${{ env.CSV_FILE }}"):
               header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
+              print(f"{header"})
               use_header = True
             # folder needs to exist, open() a+ does not
             makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
