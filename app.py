@@ -18,7 +18,7 @@ STARTRES_REPL_STR = "#STARTRES#"
 
 if not exists(CSV_FILE):
   # folder needs to exist before open() context
-  makedirs(dirname(CSV_FILE, exist_ok=True))
+  makedirs(dirname(CSV_FILE), exist_ok=True)
   header = ["published", "updated", "id", "version", "title"]
   print(f"{header}")
   with open(CSV_FILE, 'w+', newline='', encoding='UTF8') as f:
