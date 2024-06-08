@@ -35,6 +35,9 @@ jobs:
         # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L38
         shell: python
         run: |
+          from os.path import realpath, dirname
+          os.path.dirname(os.path.realpath(__file__))
+          
           from . import utils
           if not exists("${{ env.CSV_FILE }}"):
             # folder needs to exist before open()
