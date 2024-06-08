@@ -27,7 +27,7 @@ if not exists(CSV_FILE):
 # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
 # https://info.arxiv.org/help/api/user-manual.html
 # sortOrder=descending
-add_url = ADD_URL.replace(TOPICS_REPL_STR, TOPICS).replace(MAXRES_REPL_STR, MAX_RESULTS_PER_QUERY)
+add_url = ADD_URL.replace(TOPICS_REPL_STR, TOPICS).replace(MAXRES_REPL_STR, str(MAX_RESULTS_PER_QUERY))
 search_query = BASE_URL + add_url
 
 for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
