@@ -122,7 +122,7 @@ jobs:
             makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
             with open("${{ env.CSV_FILE }}", 'a+', newline='', encoding='UTF8') as f:
               writer = csv.writer(f)
-              if exists("${{ env.CSV_FILE }}"):
+              if not exists("${{ env.CSV_FILE }}"):
                 header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
                 writer.writerow(header)
               for o in out:
