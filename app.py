@@ -3,6 +3,7 @@ import csv
 from os import getenv, makedirs
 from os.path import exists, dirname
 import urllib.request
+import feedparser
 
 CSV_FILE = getenv("CSV_FILE")
 TOPICS = getenv("TOPICS")
