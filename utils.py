@@ -14,14 +14,8 @@ arxiv API output
   'summary': 'The robust association of the same'
 '''
 
-# fetch and parse
-import time
 import feedparser
 import urllib.request
-# write to csv
-from os import makedirs
-from os.path import exists, dirname
-import csv
 
 def encode_feedparser_dict(d):
   """ helper function to strip feedparser objects using a deep copy """
