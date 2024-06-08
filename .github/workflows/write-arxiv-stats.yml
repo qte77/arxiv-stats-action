@@ -20,8 +20,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
+      #  with:
+      #    ref: main
       #    sparse-checkout: ${{ env.OUT_FILE }}
       #    sparse-checkout-cone-mode: false
       # https://github.com/actions/setup-python
