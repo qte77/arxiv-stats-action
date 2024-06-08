@@ -1,22 +1,32 @@
 import utils
-if not exists("${{ env.CSV_FILE }}"):
-  # folder needs to exist before open()
-  makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
-  header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
+import csv
+from os import getenv, makedirs
+from os.path import exists, dirname
+import urllib.request
+
+CSV_FILE = getenv(CSV_FILE)
+TOPICS = getenv(TOPICS)
+START_RESULT = getenv(START_RESULT)
+END_RESULT = getenv(END_RESULT
+ADD_URL = getenv(ADD_URL)
+BASE_URL = getenv(BASE_URL)
+MAX_RESULTS_PER_QUERY = getenv(MAX_RESULTS_PER_QUERY)
+
+if not exists(CSV_FILE):
+  # folder needs to exist before open() context
+  makedirs(dirname(CSV_FILE, exist_ok=True)
+  header = ["published", "updated", "id", "version", "title"]
   print(f"{header}")
-  with open("${{ env.CSV_FILE }}", 'w+', newline='', encoding='UTF8') as f:
+  with open(CSV_FILE, 'w+', newline='', encoding='UTF8') as f:
     csv.writer(f).writerow(header)
+
 # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
 # https://info.arxiv.org/help/api/user-manual.html
 # sortOrder=descending
-add_url = "${{ env.ADD_URL }}".replace("#TOPICS#", "${{ env.TOPICS }}")
-add_url = add_url.replace("#MAXRES#", "${{ env.MAX_RESULTS_PER_QUERY }}")
-search_query = "${{ env.BASE_URL }}" + add_url
-for k in range(
-  ${{ env.START_RESULT }},
-  ${{ env.START_RESULT }} + ${{ env.END_RESULT }},
-  ${{ env.MAX_RESULTS_PER_QUERY }}
-):
+add_url = ADD_URL.replace("#TOPICS#", TOPICS).replace("#MAXRES#", MAX_RESULTS_PER_QUERY)
+search_query = BASE_URL + add_url
+
+for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   search_query_k = search_query.replace("#STARTRES#", str(k))
   with urllib.request.urlopen(search_query_k) as url:
       response = url.read()
@@ -37,7 +47,7 @@ for k in range(
         j['published'], j['updated'],
         rawid, version, title                  
       ])
-  with open("${{ env.CSV_FILE }}", 'a+', newline='', encoding='UTF8') as f:
+  with open(CSV_FILE, 'a+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
     for o in out:
       writer.writerow(o)
