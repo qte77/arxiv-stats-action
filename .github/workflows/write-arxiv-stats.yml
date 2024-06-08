@@ -20,9 +20,9 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      #  with:
-      #    ref: main
-      #    sparse-checkout: ${{ env.CSV_FILE }}
+        with:
+          ref: main
+          sparse-checkout: ${{ env.CSV_FILE }}
       #    sparse-checkout-cone-mode: false
       # https://github.com/actions/setup-python
       - uses: actions/setup-python@v5
