@@ -15,7 +15,6 @@ arxiv API output
 '''
 
 import feedparser
-import urllib.request
 
 def encode_feedparser_dict(d):
   """ helper function to strip feedparser objects using a deep copy """
