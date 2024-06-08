@@ -1,4 +1,4 @@
-from util import get_api_response, get_parsed_output
+from utils import get_api_response, get_parsed_output
 from csv import writer
 from os import getenv, makedirs
 from os.path import exists, dirname
