@@ -61,4 +61,4 @@ def get_parsed_output(response):
         j['published'], j['updated'],
         rawid, version, title                  
       ])
-    return out
+  return out
