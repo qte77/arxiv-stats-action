@@ -35,10 +35,12 @@ jobs:
         # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L38
         shell: python
         run: |
+          from os import listdir
           from os.path import realpath, dirname
           print(dirname(realpath(__file__)))
+          print(listdir())
           
-          from . import utils
+          import utils.py
           if not exists("${{ env.CSV_FILE }}"):
             # folder needs to exist before open()
             makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
