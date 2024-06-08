@@ -27,7 +27,8 @@ if not exists(CSV_FILE):
   header = ["published", "updated", "id", "version", "title"]
   print(f"{header}")
   with open(CSV_FILE, 'w+', newline='', encoding='UTF8') as f:
-    writer(f).writerow(header)
+    writer = writer(f)
+    writer.writerow(header)
 
 for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   search_query_k = search_query.replace(STARTRES_REPL_STR, str(k))
