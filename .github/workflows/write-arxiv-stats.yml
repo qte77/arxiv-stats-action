@@ -37,7 +37,7 @@ jobs:
         run: |
           print(f"env::${{ env.GITHUB_ACTION_PATH }}")
           print(f"gh::${{ github.action_path }}")
-          import ./.github/workflows/utils.py
+          from ./.github/workflows import utils.py
           if not exists("${{ env.CSV_FILE }}"):
             # folder needs to exist before open()
             makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
