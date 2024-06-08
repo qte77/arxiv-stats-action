@@ -66,14 +66,14 @@ jobs:
                   j['published'], j['updated'],
                   rawid, version, title                  
                 ])
-            # folder needs to exist before open()
-            # https://docs.python.org/3/library/functions.html#open
+            if not exists("${{ env.CSV_FILE }}"):
+              header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
+              use_header = True
+            # folder needs to exist, open() a+ does not
             makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
             with open("${{ env.CSV_FILE }}", 'a+', newline='', encoding='UTF8') as f:
               writer = csv.writer(f)
-              if not exists("${{ env.CSV_FILE }}"):
-                header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
-                writer.writerow(header)
+              if use_header: writer.writerow(header)
               for o in out:
                 writer.writerow(o)
       - name: push updated csv file back to main branch
