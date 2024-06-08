@@ -10,3 +10,19 @@ Logs daily stats of papers submitted to arxiv.org. Inspired by arxiv-sanity.com.
 [![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/qte77/arxiv-stats-action?logo=Cirrus-ci)](https://cirrus-ci.com/github/gte77/arxiv-stats-action)
 [![wakatime](https://wakatime.com/badge/github/qte77/arxiv-stats-action.svg)](https://wakatime.com/badge/github/qte77/arxiv-stats-action)
 -->
+
+## Environment Variables
+
+Used environment variables and their defaults.
+
+```python
+APP_DIR  ('app')
+PY_VER  ('3.10')
+OUT_FILE ('data/data.csv')
+TOPICS ('cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
+BASE_URL ('http://export.arxiv.org/api/query?')
+ADD_URL ('search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
+START_RESULT (0)
+END_RESULT (199)
+MAX_RESULTS_PER_QUERY (100)
+```
