@@ -96,7 +96,7 @@ jobs:
             ${{ env.START_RESULT }} + ${{ env.END_RESULT }},
             ${{ env.MAX_RESULTS_PER_QUERY }}
           ):
-            search_query = ${{ env.BASE_URL }} + add_url.replace("#STARTRES#", k)
+            search_query = "${{ env.BASE_URL }}" + add_url.replace("#STARTRES#", k)
             with urllib.request.urlopen(search_query) as url:
                 response = url.read()
             if url.status != 200:
