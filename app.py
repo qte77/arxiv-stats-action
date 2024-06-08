@@ -27,13 +27,13 @@ if not exists(CSV_FILE):
   header = ["published", "updated", "id", "version", "title"]
   print(f"{header}")
   with open(CSV_FILE, 'w+', newline='', encoding='UTF8') as f:
-    csv.writer(f).writerow(header)
+    writer(f).writerow(header)
 
 for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   search_query_k = search_query.replace(STARTRES_REPL_STR, str(k))
   response = get_api_response(search_query_k)
   out = get_parsed_output(response)
   with open(CSV_FILE, 'a+', newline='', encoding='UTF8') as f:
-    writer = csv.writer(f)
+    writer = writer(f)
     for o in out:
       writer.writerow(o)
