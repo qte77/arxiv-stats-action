@@ -2,9 +2,9 @@
 # TODO split csv by week
 # TODO create log
 # TODO retry n-times if connection failes
-# TODO sort descending and check if paper already id present
+# TODO sort descending and check if paper id already present
 # TODO export functions to utils.py
-# TODO base_url and add_url to env, add env.max_results
+# TODO only insert papers published in time frame, not updated
 name: Update arxiv.org stats
 on:
   #schedule:
@@ -14,8 +14,11 @@ on:
 env:
   CSV_FILE: 'data/dummy-data.csv'
   TOPICS:  'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO'
-  START_AT: 0
-  END_AT: 2
+  BASE_URL: 'http://export.arxiv.org/api/query?'
+  ADD_URL: 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES&sortBy=submittedDate'
+  START_RESULT: 0
+  END_RESULT: 199
+  MAX_RESULTS_PER_QUERY: 100
 jobs:
   updateArxivCsv:
     runs-on: ubuntu-latest
@@ -45,8 +48,6 @@ jobs:
           from os import makedirs
           from os.path import exists, dirname
           import csv
-          #from random import random, choice, seed
-          #from datetime import datetime, timezone
 
           '''
           arxiv API output
@@ -84,19 +85,23 @@ jobs:
               f"error splitting id and version in idv string: {idv}"
             return idv, rawid, int(version)
                 
-          for k in range(${{ env.START_AT }}, ${{ env.START_AT }} + ${{ env.END_AT }}, 100):
-            # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
-            base_url = 'http://export.arxiv.org/api/query?'
-            add_url = f"search_query=${{ env.TOPICS }}&sortBy=lastUpdatedDate&start={k}&max_results=100"
-            #add_url = 'search_query=%s&sortBy=submittedDate&start=%d&max_results=100' % (${{ env.TOPICS }}, k)
-            search_query = base_url + add_url
+          # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
+          # https://info.arxiv.org/help/api/user-manual.html
+          # sortOrder=descending
+          add_url = $ADD_URL.replace("#TOPICS", $TOPICS).replace("#MAXRES#", $MAX_RESULTS_PER_QUERY)
+          for k in range(
+            ${{ env.START_RESULT }},
+            ${{ env.START_RESULT }} + ${{ env.END_RESULT }},
+            ${{ env.MAX_RESULTS_PER_QUERY }}
+          ):
+            search_query = $BASE_URL + add_url.replace("#STARTRES#", k)
             with urllib.request.urlopen(search_query) as url:
                 response = url.read()
             if url.status != 200:
                 print(f"arxiv did not return status 200 response")
             out = []
             parse = feedparser.parse(response)
-            for k, e in enumerate(parse.entries):
+            for e in parse.entries:
                 j = encode_feedparser_dict(e)
                 # extract / parse id information
                 idv, rawid, version = parse_arxiv_url(j['id'])
