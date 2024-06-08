@@ -1,4 +1,4 @@
-import .utils
+import utils
 import csv
 from os import getenv, makedirs
 from os.path import exists, dirname
