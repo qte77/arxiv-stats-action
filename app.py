@@ -14,7 +14,7 @@ MAX_RESULTS_PER_QUERY = getenv(MAX_RESULTS_PER_QUERY)
 
 if not exists(CSV_FILE):
   # folder needs to exist before open() context
-  makedirs(dirname(CSV_FILE, exist_ok=True)
+  makedirs(dirname(CSV_FILE, exist_ok=True))
   header = ["published", "updated", "id", "version", "title"]
   print(f"{header}")
   with open(CSV_FILE, 'w+', newline='', encoding='UTF8') as f:
