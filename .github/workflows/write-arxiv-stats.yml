@@ -15,7 +15,7 @@ env:
   CSV_FILE: 'data/dummy-data.csv'
   TOPICS:  'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO'
   BASE_URL: 'http://export.arxiv.org/api/query?'
-  ADD_URL: 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES&sortBy=submittedDate'
+  ADD_URL: 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate'
   START_RESULT: 0
   END_RESULT: 199
   MAX_RESULTS_PER_QUERY: 100
