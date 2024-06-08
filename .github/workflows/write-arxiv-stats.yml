@@ -112,7 +112,7 @@ jobs:
                 ])
             if not exists("${{ env.CSV_FILE }}"):
               header = ["published", "updated", "id", "version", "title"] # ak: "time", "time_str"
-              print(f"{header"})
+              print(f"{header}")
               use_header = True
             # folder needs to exist before open()
             makedirs(dirname("${{ env.CSV_FILE }}"), exist_ok=True)
