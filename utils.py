@@ -41,7 +41,7 @@ def parse_arxiv_url(url):
 
 def get_api_response(search_query):
   with urllib.request.urlopen(search_query) as url:
-      assert url.status != 200, \
+      assert url.status == 200, \
         "arxiv did not return status 200 response: " + search_query
       return url.read()
 
