@@ -4,13 +4,13 @@ from os import getenv, makedirs
 from os.path import exists, dirname
 import urllib.request
 
-CSV_FILE = getenv(CSV_FILE)
-TOPICS = getenv(TOPICS)
-START_RESULT = getenv(START_RESULT)
-END_RESULT = getenv(END_RESULT)
-ADD_URL = getenv(ADD_URL)
-BASE_URL = getenv(BASE_URL)
-MAX_RESULTS_PER_QUERY = getenv(MAX_RESULTS_PER_QUERY)
+CSV_FILE = getenv("CSV_FILE")
+TOPICS = getenv("TOPICS")
+START_RESULT = getenv("START_RESULT")
+END_RESULT = getenv("END_RESULT")
+ADD_URL = getenv("ADD_URL")
+BASE_URL = getenv("BASE_URL")
+MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY")
 
 if not exists(CSV_FILE):
   # folder needs to exist before open() context
