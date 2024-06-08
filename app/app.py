@@ -3,7 +3,7 @@ from os import getenv, makedirs
 from os.path import exists, dirname
 from utils import get_api_response, get_parsed_output
 
-OUT_FILE = getenv("OUT_FILE")
+OUT_FILE = getenv("OUT_FILE", 'data/data.csv')
 TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
 BASE_URL = getenv("BASE_URL", 'http://export.arxiv.org/api/query?')
 ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
