@@ -15,6 +15,7 @@ arxiv API output
 '''
 
 import feedparser
+import urllib.request
 
 def encode_feedparser_dict(d):
   """ helper function to strip feedparser objects using a deep copy """
@@ -37,3 +38,27 @@ def parse_arxiv_url(url):
   assert rawid is not None and version is not None, \
     f"error splitting id and version in idv string: {idv}"
   return idv, rawid, int(version)
+
+def get_api_response(search_query):
+  with urllib.request.urlopen(search_query) as url:
+      assert url.status != 200, \
+        "arxiv did not return status 200 response: " + search_query
+      return url.read()
+
+def get_parsed_output(response):
+  out = []
+  parse = feedparser.parse(response)
+  for e in parse.entries:
+      j = encode_feedparser_dict(e)
+      # extract / parse id information
+      idv, rawid, version = parse_arxiv_url(j['id'])
+      # TODO simplify title prep
+      title = str(j['title'])
+      for s in '\n\r\"\'':
+          title = title.translate({ ord(s): None })
+      title = f"'{title}'"
+      out.append([
+        j['published'], j['updated'],
+        rawid, version, title                  
+      ])
+    return out
