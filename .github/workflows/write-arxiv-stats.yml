@@ -25,12 +25,12 @@ jobs:
       #    sparse-checkout: ${{ env.OUT_FILE }}
       #    sparse-checkout-cone-mode: false
       # https://github.com/actions/setup-python
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          cache: 'pip'
-          cache-dependency-path: "${{ github.action_path }}/requirements.txt"
-      #- run: pip install -qqr "${{ env.GITHUB_ACTION_PATH }}/requirements.txt"
+      #- uses: actions/setup-python@v5
+      #  with:
+      #    python-version: '3.10'
+      #    cache: 'pip' # ${{ env.GITHUB_ACTION_PATH }}
+      #    cache-dependency-path: "${{ github.action_path }}/requirements.txt"
+      - run: pip install -qqr requirements.txt
       - name: fetch and parse statistics for arxiv.org
         # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L38
         shell: python
