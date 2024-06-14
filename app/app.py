@@ -15,7 +15,7 @@ TOPICS_REPL_STR = "#TOPICS#"
 MAXRES_REPL_STR = "#MAXRES#"
 STARTRES_REPL_STR = "#STARTRES#"
 
-HEADER = ["published", "updated", "id", "version", "title"]
+HEADER = ["published", "weekday (mon=0)", "updated", "id", "version", "title"]
 
 # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
 # https://info.arxiv.org/help/api/user-manual.html
