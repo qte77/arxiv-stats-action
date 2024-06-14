@@ -9,7 +9,7 @@ BASE_URL = getenv("BASE_URL", 'http://export.arxiv.org/api/query?')
 ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
 START_RESULT = getenv("START_RESULT", 0)
 END_RESULT = getenv("END_RESULT", 19)
-MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 100)
+MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 10)
 
 TOPICS_REPL_STR = "#TOPICS#"
 MAXRES_REPL_STR = "#MAXRES#"
