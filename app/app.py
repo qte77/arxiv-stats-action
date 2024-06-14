@@ -38,6 +38,8 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
     for o in out:
+      print(f"{o[0]=}")
+      print(f"{date(o[0])")
       print(f"{date(o[0]).isocalendar().week=}")
       print(f"{date(o[0]).isocalendar().strftime('%V')=}")
       print(f"{date(o[0]).isocalendar().week.strftime('%V')=}")
