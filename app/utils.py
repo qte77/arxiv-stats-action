@@ -14,12 +14,13 @@ arxiv API output
   'summary': 'The robust association of the same'
 '''
 
-import feedparser
-import urllib.request
+from urllib.request import open
+from datetime import date, strptime
+from feedparser import FeedParserDict, parse
 
 def encode_feedparser_dict(d):
   """ helper function to strip feedparser objects using a deep copy """
-  if isinstance(d, feedparser.FeedParserDict) or isinstance(d, dict):
+  if isinstance(d, FeedParserDict) or isinstance(d, dict):
       return {k: encode_feedparser_dict(d[k]) for k in d.keys()}
   elif isinstance(d, list):
       return [encode_feedparser_dict(k) for k in d]
@@ -40,14 +41,14 @@ def parse_arxiv_url(url):
   return idv, rawid, int(version)
 
 def get_api_response(search_query):
-  with urllib.request.urlopen(search_query) as url:
+  with urlopen(search_query) as url:
       assert url.status == 200, \
         "arxiv did not return status 200 response: " + search_query
       return url.read()
 
 def get_parsed_output(response):
   out = []
-  parse = feedparser.parse(response)
+  parse = parse(response)
   for e in parse.entries:
       j = encode_feedparser_dict(e)
       # extract / parse id information
@@ -57,8 +58,14 @@ def get_parsed_output(response):
       for s in '\n\r\"\'':
           title = title.translate({ ord(s): None })
       title = f"'{title}'"
+      pub_date_utc = strptime(j['published']).isoformat()
+      print(f"{pub=}")
+      print(f"{date(pub)=}")
+      print(f"{date(o[0]).isocalendar().week=}")
+      print(f"{date(o[0]).isocalendar().strftime('%V')=}")
+      print(f"{date(o[0]).isocalendar().week.strftime('%V')=}")
       out.append([
-        j['published'], j['updated'],
+        pub_date_utc, j['updated'],
         rawid, version, title                  
       ])
   return out
