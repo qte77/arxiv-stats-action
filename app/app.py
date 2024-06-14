@@ -1,7 +1,6 @@
 import csv
 from os import getenv, makedirs
 from os.path import exists, dirname
-from datetime import date
 from utils import get_api_response, get_parsed_output
 
 OUT_FILE = getenv("OUT_FILE", 'data/data.csv')
