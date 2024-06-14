@@ -38,5 +38,6 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
     writer = csv.writer(f)
     print(f"start output, {len(out)=}")
     for o in out:
+      print(f"{len(o)=}, {o=}")
       print(o[2])
       # writer.writerow(o)
