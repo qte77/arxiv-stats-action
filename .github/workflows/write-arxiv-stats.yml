@@ -26,7 +26,6 @@ jobs:
         with:
           python-version: ${{ env.PY_VER }}
           cache: 'pip'
-      - run: ls -a
       - run: pip install -qqr ${{ env.APP_DIR }}/requirements.txt
       - run: python ${{ env.APP_DIR }}/app.py
       - name: Push updated csv file back to main branch
