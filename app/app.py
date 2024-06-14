@@ -1,8 +1,8 @@
 import csv
 from os import getenv, makedirs
 from os.path import exists, dirname
-from utils import get_api_response, get_parsed_output
 from datetime import date
+from utils import get_api_response, get_parsed_output
 
 OUT_FILE = getenv("OUT_FILE", 'data/data.csv')
 TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
@@ -38,5 +38,7 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
     for o in out:
-      print(f"{date(o["published"]).isocalendar().week=}")
+      print(f"{date(o[0]).isocalendar().week=}")
+      print(f"{date(o[0]).isocalendar().strftime("%V")=}")
+      print(f"{date(o[0]).isocalendar().week.strftime("%V")=}")
       # writer.writerow(o)
