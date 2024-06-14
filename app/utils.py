@@ -14,7 +14,7 @@ arxiv API output
   'summary': 'The robust association of the same'
 '''
 
-from urllib.request import open
+from urllib.request import urlopen
 from datetime import date, strptime
 from feedparser import FeedParserDict, parse
 
