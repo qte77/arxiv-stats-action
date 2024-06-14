@@ -9,7 +9,7 @@ TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+c
 BASE_URL = getenv("BASE_URL", 'http://export.arxiv.org/api/query?')
 ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
 START_RESULT = getenv("START_RESULT", 0)
-END_RESULT = getenv("START_RESULT", 19)
+END_RESULT = getenv("END_RESULT", 19)
 MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 100)
 
 TOPICS_REPL_STR = "#TOPICS#"
@@ -37,6 +37,7 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   out = get_parsed_output(response)
   with open(OUT_FILE, 'a+', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)
+    print(f"start output, {len(out)=}")
     for o in out:
       date = o[0]
       print(f"{date=}")
