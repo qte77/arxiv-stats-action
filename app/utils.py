@@ -14,7 +14,7 @@ arxiv API output
   'summary': 'The robust association of the same'
 '''
 
-from datetime import strptime
+from datetime import datetime
 from feedparser import FeedParserDict, parse
 from urllib.request import urlopen
 
@@ -58,7 +58,8 @@ def get_parsed_output(response):
       for s in '\n\r\"\'':
           title = title.translate({ ord(s): None })
       title = f"'{title}'"
-      pub_date_utc = strptime(j['published']).isoformat()
+      pub_date_utc = datetime.strptime(j['published']).isoformat()
+      # pub_weekday = pub_date_utc.isocalendar().week.strftime('%V')
       print(f"{pub_date_utc=}, {type(pub_date_utc)=}")
       print(f"{pub_date_utc.isocalendar().week=}")
       print(f"{pub_date_utc.isocalendar().strftime('%V')=}")
