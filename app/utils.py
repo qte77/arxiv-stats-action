@@ -48,10 +48,9 @@ def get_api_response(search_query):
 
 def get_parsed_output(response):
   out = []
-  parse = parse(response)
-  for e in parse.entries:
+  parsed = parse(response)
+  for e in parsed.entries:
       j = encode_feedparser_dict(e)
-      # extract / parse id information
       idv, rawid, version = parse_arxiv_url(j['id'])
       # TODO simplify title prep
       title = str(j['title'])
