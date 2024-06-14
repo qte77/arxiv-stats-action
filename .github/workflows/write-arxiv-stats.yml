@@ -16,7 +16,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
+      #  with:
           # ref: main
           # sparse-checkout: ${{ env.OUT_FILE }}
           # sparse-checkout-cone-mode: false
