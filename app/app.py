@@ -39,6 +39,6 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
     writer = csv.writer(f)
     for o in out:
       print(f"{date(o[0]).isocalendar().week=}")
-      print(f"{date(o[0]).isocalendar().strftime("%V")=}")
-      print(f"{date(o[0]).isocalendar().week.strftime("%V")=}")
+      print(f"{date(o[0]).isocalendar().strftime('%V')=}")
+      print(f"{date(o[0]).isocalendar().week.strftime('%V')=}")
       # writer.writerow(o)
