@@ -58,7 +58,6 @@ def get_api_response(search_query):
 def get_parsed_output(response):
   out = []
   parsed = parse(response)
-  print(parsed)
   for e in parsed.entries:
       j = encode_feedparser_dict(e)
       idv, rawid, version = parse_arxiv_url(j['id'])
@@ -77,4 +76,5 @@ def get_parsed_output(response):
         j['published'], j['updated'],
         rawid, version, title                  
       ])
+  print(out)
   return out
