@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           # ref: main
-          sparse-checkout: ${{ env.OUT_FILE }}
+          # sparse-checkout: ${{ env.OUT_FILE }}
           # sparse-checkout-cone-mode: false
       # https://github.com/actions/setup-python          
       - name: Setup python ${{ env.PY_VER }}
@@ -29,7 +29,7 @@ jobs:
       - run: ls -a
       - run: pip install -qqr ${{ env.APP_DIR }}/requirements.txt
       - run: python ${{ env.APP_DIR }}/app.py
-      - name: push updated csv file back to main branch
+      - name: Push updated csv file back to main branch
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
