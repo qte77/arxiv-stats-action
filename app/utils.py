@@ -66,7 +66,7 @@ def get_parsed_output(response):
       for s in '\n\r\"\'':
           title = title.translate({ ord(s): None })
       title = f"'{title}'" 
-      pub_date_utc = datetime.strptime(j['published'], '%d-%m-%yT%H:%M:%SZ')
+      pub_date_utc = datetime.strptime(j['published'], '%Y-%m-%dT%H:%M:%SZ')
       pub_weekday = pub_date_utc.isocalendar().week.strftime('%V')
       print(f"{pub_date_utc=}, {type(pub_date_utc)=}")
       print(f"{pub_date_utc.isocalendar().week=}")
