@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PY_VER }}
-      #    cache: 'pip'
+          cache: 'pip'
       - run: ls -a
       - run: pip install -qqr ${{ env.APP_DIR }}/requirements.txt
       - run: python ${{ env.APP_DIR }}/app.py
