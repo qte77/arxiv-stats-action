@@ -6,11 +6,20 @@ arxiv API output
   'guidislink': True,
   'link': 'http://arxiv.org/abs/2406.04221v1',
   'updated': '2024-06-06T16:20:07Z',
-  'updated_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
+  'updated_parsed': time.struct_time(
+    tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16,
+    tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0
+  ),
   'published': '2024-06-06T16:20:07Z',
-  'published_parsed': time.struct_time(tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16, tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0),
+  'published_parsed': time.struct_time(
+    tm_year=2024, tm_mon=6, tm_mday=6, tm_hour=16,
+    tm_min=20, tm_sec=7, tm_wday=3, tm_yday=158, tm_isdst=0
+  ),
   'title': 'Matching Anything by Segmenting Anything',
-  'title_detail': {'type': 'text/plain', 'language': None, 'base': '', 'value': 'Matching Anything by Segmenting Anything'},
+  'title_detail': {
+    'type': 'text/plain', 'language': None,
+    'base': '', 'value': 'Matching Anything by Segmenting Anything'
+    },
   'summary': 'The robust association of the same'
 '''
 
@@ -56,15 +65,15 @@ def get_parsed_output(response):
       title = str(j['title'])
       for s in '\n\r\"\'':
           title = title.translate({ ord(s): None })
-      title = f"'{title}'"
-      pub_date_utc = datetime.strptime(j['published']).isoformat()
+      title = f"'{title}'" 
+      pub_date_utc = datetime.strptime(j['published'], '%d-%m-%yT%H:%M:%S').isoformat()
       # pub_weekday = pub_date_utc.isocalendar().week.strftime('%V')
       print(f"{pub_date_utc=}, {type(pub_date_utc)=}")
       print(f"{pub_date_utc.isocalendar().week=}")
       print(f"{pub_date_utc.isocalendar().strftime('%V')=}")
       print(f"{pub_date_utc.isocalendar().week.strftime('%V')=}")
       out.append([
-        pub_date_utc, j['updated'],
+        j['published'], j['updated'],
         rawid, version, title                  
       ])
   return out
