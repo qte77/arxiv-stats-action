@@ -29,7 +29,7 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   out = get_parsed_output(response)
   for k in out.keys():
     out_file = f"{OUT_DIR}/{k}.csv"
-    print(outfile)
+    print(out_file)
     if not exists(out_file):
       # folder needs to exist before open() context
       makedirs(dirname(out_file), exist_ok=True)
