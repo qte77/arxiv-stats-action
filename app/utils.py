@@ -58,7 +58,7 @@ def get_api_response(api_url):
     raise ValueError from None
   with urlopen(req) as url:
       assert url.status == 200, \
-        f"arxiv did not return status 200 response: {search_query}"
+        f"arxiv did not return status 200 response: {api_url}"
       return url.read()
 
 def get_parsed_output(response):
