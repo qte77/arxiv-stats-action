@@ -88,7 +88,7 @@ def get_parsed_output(response):
 
 def write_file(
   content: dict, content_index: str,
-  out_dir: str = ".", file_ext: str = "csv"
+  out_dir: str = ".", header = '', file_ext: str = "csv"
 ) -> None:
   '''TODO'''
   out_file = f"{out_dir}/{content_index}.{file_ext}"
@@ -98,7 +98,7 @@ def write_file(
     makedirs(dirname(out_file), exist_ok=True)
     with open(mode='w+', **fopen_kwp) as f:
       writer = csv.writer(f)
-      writer.writerow(HEADER)
+      writer.writerow(header)
   with open(mode='a+', **fopen_kwp) as f:
     writer = csv.writer(f)
     for o in content[content_index]:
