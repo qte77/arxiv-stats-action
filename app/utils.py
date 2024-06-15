@@ -56,7 +56,7 @@ def get_api_response(search_query):
       return url.read()
 
 def get_parsed_output(response):
-  out = []
+  out = {}
   parsed = parse(response)
   for e in parsed.entries:
       j = encode_feedparser_dict(e)
@@ -68,7 +68,9 @@ def get_parsed_output(response):
       title = f"'{title}'" 
       pub_date_utc = datetime.strptime(j['published'], '%Y-%m-%dT%H:%M:%SZ')
       pub_weekday = pub_date_utc.isocalendar().week # .strftime('%V')
-      out.append([
+      if out[pub_weekday] is None:
+        out[pub_weekday] = ()
+      out[pub_weekday].append([
         j['published'], pub_weekday, j['updated'],
         rawid, version, title                  
       ])
