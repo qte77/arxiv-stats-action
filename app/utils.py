@@ -22,10 +22,12 @@ arxiv API output
     },
   'summary': 'The robust association of the same'
 '''
-
+import csv
+from os import makedirs
+from os.path import exists, dirname
 from datetime import datetime
 from feedparser import FeedParserDict, parse
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 def encode_feedparser_dict(d):
   """ helper function to strip feedparser objects using a deep copy """
@@ -49,10 +51,14 @@ def parse_arxiv_url(url):
     f"error splitting id and version in idv string: {idv}"
   return idv, rawid, int(version)
 
-def get_api_response(search_query):
-  with urlopen(search_query) as url:
+def get_api_response(api_url):
+  if api_url.lower().startswith('https://'):
+    req = Request(api_url)
+  else:
+    raise ValueError from None
+  with urlopen(req) as url:
       assert url.status == 200, \
-        "arxiv did not return status 200 response: " + search_query
+        f"arxiv did not return status 200 response: {search_query}"
       return url.read()
 
 def get_parsed_output(response):
@@ -79,3 +85,21 @@ def get_parsed_output(response):
         rawid, version, title                  
       ])
   return out
+
+def write_file(
+  content: dict, content_index: str,
+  out_dir: str = ".", file_ext: str = "csv"
+) -> None:
+  '''TODO'''
+  out_file = f"{out_dir}/{content_index}.{file_ext}"
+  fopen_kwp = { 'file': out_file, 'newline': '', 'encoding': 'UTF8' }
+  if not exists(out_file):
+    # folder needs to exist before open() context
+    makedirs(dirname(out_file), exist_ok=True)
+    with open(mode='w+', **fopen_kwp) as f:
+      writer = csv.writer(f)
+      writer.writerow(HEADER)
+  with open(mode='a+', **fopen_kwp) as f:
+    writer = csv.writer(f)
+    for o in content[content_index]:
+      writer.writerow(o)
