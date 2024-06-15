@@ -6,13 +6,9 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
-  CSV_FILE: 'data/dummy-data.csv'
-  TOPICS:  'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO'
-  BASE_URL: 'http://export.arxiv.org/api/query?'
-  ADD_URL: 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate'
-  START_RESULT: 0
-  END_RESULT: 199
-  MAX_RESULTS_PER_QUERY: 100
+  OUT_DIR: './data'
+  APP_DIR: './app'
+  PY_VER: '3.10'
 jobs:
   updateArxivCsv:
     runs-on: ubuntu-latest
@@ -20,22 +16,19 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      # https://github.com/actions/setup-python          
+      - name: Setup python ${{ env.PY_VER }}
+        uses: actions/setup-python@v5
         with:
-          # ref: main
-          sparse-checkout: ${{ env.CSV_FILE }}
-          # sparse-checkout-cone-mode: false
-      # https://github.com/actions/setup-python
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+          python-version: ${{ env.PY_VER }}
           cache: 'pip'
-      - run: pip install -qqr requirements.txt
-      - run: python app.py
-      - name: push updated csv file back to main branch
+      - run: pip install -qqr ${{ env.APP_DIR }}/requirements.txt
+      - run: python ${{ env.APP_DIR }}/app.py
+      - name: Push updated files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $CSV_FILE
-          git commit -m "Updated $CSV_FILE"
+          git add $OUT_DIR
+          git commit -m "Updated $OUT_DIR"
           git push
 ...
