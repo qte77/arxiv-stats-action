@@ -78,4 +78,5 @@ def get_parsed_output(response):
         j['published'], pub_weekday, j['updated'],
         rawid, version, title                  
       ])
+  print(out.keys())
   return out
