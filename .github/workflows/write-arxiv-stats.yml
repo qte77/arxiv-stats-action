@@ -27,7 +27,7 @@ jobs:
         id: diff_check_changed
         run: |
           git add $OUT_DIR
-          git diff --cached --quiet $OUT_DIR
+          git diff --cached --quiet
           test $? -eq 1 && echo "changed=true" >> $GITHUB_OUTPUT
       - name: Commit and push if changes
         if: steps.diff_check_changed.outputs.changed == 'true'
