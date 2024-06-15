@@ -56,6 +56,10 @@ def get_api_response(search_query):
       return url.read()
 
 def get_parsed_output(response):
+  '''
+  Expects API response for feedparser.parse().
+  Returns dict(list) of parsed API responses
+  '''
   out = {}
   parsed = parse(response)
   for e in parsed.entries:
