@@ -1,7 +1,5 @@
-import csv
-from os import getenv, makedirs
-from os.path import exists, dirname
-from utils import get_api_response, get_parsed_output
+from os import getenv
+from utils import get_api_response, get_parsed_output, write_file
 
 OUT_DIR = getenv("OUT_DIR", './data')
 TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
@@ -28,14 +26,4 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   response = get_api_response(api_url_k)
   out = get_parsed_output(response)
   for k in out.keys():
-    out_file = f"{OUT_DIR}/{k}.csv"
-    if not exists(out_file):
-      # folder needs to exist before open() context
-      makedirs(dirname(out_file), exist_ok=True)
-      with open(out_file, 'w+', newline='', encoding='UTF8') as f:
-        writer = csv.writer(f)
-        writer.writerow(HEADER)
-    with open(out_file, 'a+', newline='', encoding='UTF8') as f:
-      writer = csv.writer(f)
-      for o in out[k]:
-        writer.writerow(o)
+    write_file(k, OUT_DIR)
