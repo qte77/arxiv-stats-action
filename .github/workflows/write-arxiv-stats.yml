@@ -26,7 +26,9 @@ jobs:
       - name: Check if there are any changes
         id: diff_check_changed
         run: |
+          echo add $OUT_DIR
           git add $OUT_DIR
+          echo diff
           git diff --cached --quiet
           ec=$?
           echo $ec
