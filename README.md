@@ -17,7 +17,10 @@ Logs daily stats of papers submitted to arxiv.org. Inspired by arxiv-sanity.com.
 Used environment variables and their defaults.
 
 ```python
+# workflow
 APP_DIR  ('./app')
+PY_VER  ('3.10')
+# app
 OUT_DIR ('./data')
 TOPICS ('cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
 BASE_URL ('http://export.arxiv.org/api/query?')
@@ -25,5 +28,4 @@ ADD_URL ('search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=sub
 START_RESULT (0)
 END_RESULT (199)
 MAX_RESULTS_PER_QUERY (100)
-PY_VER  ('3.10')
 ```
