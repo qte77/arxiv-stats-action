@@ -6,7 +6,7 @@ TOPICS = getenv("TOPICS", 'cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+c
 BASE_URL = getenv("BASE_URL", 'https://export.arxiv.org/api/query?')
 ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
 START_RESULT = getenv("START_RESULT", 0)
-END_RESULT = getenv("END_RESULT", 19)
+END_RESULT = getenv("END_RESULT", 199)
 MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 10)
 
 TOPICS_REPL_STR = "#TOPICS#"
