@@ -25,6 +25,6 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   api_url_k = api_url.replace(STARTRES_REPL_STR, str(k))
   response = get_api_response(api_url_k)
   out = get_parsed_output(response)
-  print(f"{len(out)=}, {out.keys()=}, {len(out.values()[0])=}")
+  print(f"{len(out)=}, {out.keys()=}")
   for k in out.keys():
     write_file(out[k], k, OUT_DIR, HEADER)
