@@ -73,7 +73,7 @@ def get_parsed_output(response):
       pub_date_utc = datetime.strptime(j['published'], '%Y-%m-%dT%H:%M:%SZ')
       pub_weekday = pub_date_utc.isocalendar().week # .strftime('%V')
       if out.get(pub_weekday) is None:
-        out[pub_weekday] = ()
+        out[pub_weekday] = []
       out[pub_weekday].append([
         j['published'], pub_weekday, j['updated'],
         rawid, version, title                  
