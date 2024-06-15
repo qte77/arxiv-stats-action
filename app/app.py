@@ -7,7 +7,7 @@ BASE_URL = getenv("BASE_URL", 'https://export.arxiv.org/api/query?')
 ADD_URL = getenv("ADD_URL", 'search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
 START_RESULT = getenv("START_RESULT", 0)
 END_RESULT = getenv("END_RESULT", 199)
-MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 10)
+MAX_RESULTS_PER_QUERY = getenv("MAX_RESULTS_PER_QUERY", 100)
 
 TOPICS_REPL_STR = "#TOPICS#"
 MAXRES_REPL_STR = "#MAXRES#"
@@ -25,6 +25,6 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   api_url_k = api_url.replace(STARTRES_REPL_STR, str(k))
   response = get_api_response(api_url_k)
   out = get_parsed_output(response)
-  print(f"{len(out)=} items parsed")
+  print(f"{len(out)=}, {out.keys()=}")
   for k in out.keys():
     write_file(out[k], k, OUT_DIR, HEADER)
