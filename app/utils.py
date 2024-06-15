@@ -92,14 +92,14 @@ def write_file(
 ) -> None:
   '''TODO'''
   out_file = f"{out_dir}/{file_name}.{file_ext}"
-  fopen_kwp = { 'file': out_file, 'newline': '', 'encoding': 'UTF8' }
+  fopen_kw = { 'file': out_file, 'newline': '', 'encoding': 'UTF8' }
   if not exists(out_file):
     # folder needs to exist before open() context
     makedirs(dirname(out_file), exist_ok=True)
-    with open(mode='w+', **fopen_kwp) as f:
+    with open(mode='w+', **fopen_kw) as f:
       writer = csv.writer(f)
       writer.writerow(header)
-  with open(mode='a+', **fopen_kwp) as f:
+  with open(mode='a+', **fopen_kw) as f:
     writer = csv.writer(f)
     for o in content:
       writer.writerow(o)
