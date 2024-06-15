@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 env:
   APP_DIR: './app'
-  OUT_FILE: 'data/dummy-data.csv'
   PY_VER: '3.10'
 jobs:
   updateArxivCsv:
