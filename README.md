@@ -24,7 +24,7 @@ PY_VER  ('3.10')
 # app
 OUT_DIR ('./data')
 TOPICS ('cat:cs.CV+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.NE+OR+cat:cs.RO')
-BASE_URL ('http://export.arxiv.org/api/query?')
+BASE_URL ('https://export.arxiv.org/api/query?')
 ADD_URL ('search_query=#TOPICS#&start=#STARTRES#&max_results=#MAXRES#&sortBy=submittedDate')
 START_RESULT (0)
 END_RESULT (199)
