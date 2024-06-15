@@ -26,4 +26,4 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   response = get_api_response(api_url_k)
   out = get_parsed_output(response)
   for k in out.keys():
-    write_file(out, k, OUT_DIR, HEADER)
+    write_file(out[k], k, OUT_DIR, HEADER)
