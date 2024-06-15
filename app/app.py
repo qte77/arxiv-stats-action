@@ -15,7 +15,7 @@ TOPICS_REPL_STR = "#TOPICS#"
 MAXRES_REPL_STR = "#MAXRES#"
 STARTRES_REPL_STR = "#STARTRES#"
 
-HEADER = ["Published", "Weekday (Monday==0)", "Updated", "ID", "Version", "Title"]
+HEADER = ["Published", "Weekday(Monday==0)", "Updated", "ID", "Version", "Title"]
 
 # https://github.com/karpathy/arxiv-sanity-lite/blob/d7a303b410b0246fbd19087e37f1885f7ca8a9dc/aslite/arxiv.py#L15
 # https://info.arxiv.org/help/api/user-manual.html
@@ -29,7 +29,6 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
   out = get_parsed_output(response)
   for k in out.keys():
     out_file = f"{OUT_DIR}/{k}.csv"
-    print(out_file)
     if not exists(out_file):
       # folder needs to exist before open() context
       makedirs(dirname(out_file), exist_ok=True)
@@ -38,8 +37,5 @@ for k in range(START_RESULT, START_RESULT + END_RESULT, MAX_RESULTS_PER_QUERY):
         writer.writerow(HEADER)
     with open(out_file, 'a+', newline='', encoding='UTF8') as f:
       writer = csv.writer(f)
-      print(f"start output, {len(out[k])=}")
       for o in out[k]:
-        print(f"{len(o)=}, {o=}")
-        print(o[2])
-        # writer.writerow(o)
+        writer.writerow(o)
