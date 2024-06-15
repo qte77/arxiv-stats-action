@@ -87,11 +87,11 @@ def get_parsed_output(response):
   return out
 
 def write_file(
-  content: dict, content_index: str,
+  content: list, file_name: str,
   out_dir: str = ".", header = '', file_ext: str = "csv"
 ) -> None:
   '''TODO'''
-  out_file = f"{out_dir}/{content_index}.{file_ext}"
+  out_file = f"{out_dir}/{file_name}.{file_ext}"
   fopen_kwp = { 'file': out_file, 'newline': '', 'encoding': 'UTF8' }
   if not exists(out_file):
     # folder needs to exist before open() context
@@ -101,5 +101,5 @@ def write_file(
       writer.writerow(header)
   with open(mode='a+', **fopen_kwp) as f:
     writer = csv.writer(f)
-    for o in content[content_index]:
+    for o in content:
       writer.writerow(o)
