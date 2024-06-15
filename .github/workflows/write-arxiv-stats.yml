@@ -16,10 +16,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      #  with:
-          # ref: main
-          # sparse-checkout: ${{ env.OUT_FILE }}
-          # sparse-checkout-cone-mode: false
       # https://github.com/actions/setup-python          
       - name: Setup python ${{ env.PY_VER }}
         uses: actions/setup-python@v5
@@ -30,6 +26,7 @@ jobs:
       - run: python ${{ env.APP_DIR }}/app.py
       - name: Push updated files
         run: |
+          ls $OUT_DIR
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add $OUT_DIR
