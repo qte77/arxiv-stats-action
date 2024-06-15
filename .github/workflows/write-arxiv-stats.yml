@@ -6,6 +6,7 @@ on:
     #- cron: "0 0 * * *"
   workflow_dispatch:
 env:
+  OUT_DIR: './data'
   APP_DIR: './app'
   PY_VER: '3.10'
 jobs:
@@ -27,11 +28,11 @@ jobs:
           cache: 'pip'
       - run: pip install -qqr ${{ env.APP_DIR }}/requirements.txt
       - run: python ${{ env.APP_DIR }}/app.py
-      - name: Push updated csv file back to main branch
+      - name: Push updated files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add $OUT_FILE
-          git commit -m "Updated $OUT_FILE"
+          git add $OUT_DIR
+          git commit -m "Updated $OUT_DIR"
           git push
 ...
