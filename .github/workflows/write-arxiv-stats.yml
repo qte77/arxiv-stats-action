@@ -26,7 +26,6 @@ jobs:
       - run: python ${{ env.APP_DIR }}/app.py
       - name: Push updated files
         run: |
-          ls $OUT_DIR
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add $OUT_DIR
