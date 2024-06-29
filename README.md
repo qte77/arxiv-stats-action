@@ -1,6 +1,6 @@
 # arxiv-papers-stats-log
 
-Logs daily stats of papers submitted to arxiv.org. Inspired by arxiv-sanity.com.
+Logs daily stats of papers submitted to [arxiv.org](https://arxiv.org/). Inspired by [stats@arxiv-sanity-lite.com](https://arxiv-sanity-lite.com/stats).
 
 [![Update arxiv.org stats](https://github.com/qte77/arxiv-stats-action/actions/workflows/write-arxiv-stats.yml/badge.svg)](https://github.com/qte77/arxiv-stats-action/actions/workflows/write-arxiv-stats.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/qte77/arxiv-stats-action/badge)](https://www.codefactor.io/repository/github/qte77/arxiv-stats-action)
