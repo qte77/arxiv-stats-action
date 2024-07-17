@@ -30,3 +30,12 @@ START_RESULT (0)
 END_RESULT (199)
 MAX_RESULTS_PER_QUERY (100)
 ```
+
+## Similar projects
+
+- [monologg/nlp-arxiv-daily)](https://github.com/monologg/nlp-arxiv-daily), uses [pypi/arxiv.py](https://pypi.org/project/arxiv/) and [PwC API](https://arxiv.paperswithcode.com/api/v0/papers/).
+
+## Further reading
+
+- [Today, arXivLabs launched a new Code tab, a shortcut linking Machine Learning articles with their associated code](https://blog.arxiv.org/2020/10/08/new-arxivlabs-feature-provides-instant-access-to-code/), 2020-10-08
+- [PapersWithCode API Documentation](https://paperswithcode-client.readthedocs.io/en/latest/index.html), [pypi/paperswithcode-client](https://pypi.org/project/paperswithcode-client/)
